@@ -1,0 +1,25 @@
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    private static GameManager _instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null) 
+                _instance = new GameObject("GameManager", typeof(GameManager)).GetComponent<GameManager>();
+            return _instance;
+        }
+        private set
+        {
+            if (_instance != null && _instance != value)
+            {
+                Destroy(value.gameObject);
+                return;
+            }
+            _instance = value;
+        }
+    }
+    private void Awake() => Instance = GetComponent<GameManager>();
+}
