@@ -1,3 +1,5 @@
+using NnUtils.Scripts;
+using Player;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -22,4 +24,22 @@ public class GameManager : MonoBehaviour
         }
     }
     private void Awake() => Instance = GetComponent<GameManager>();
+    
+    private static GameObject GO => Instance.gameObject;
+
+    [SerializeField] private TimeManager _timeManager;
+    public static TimeManager TimeManager =>
+        Instance._timeManager ?? (Instance._timeManager = GO.GetOrAddComponent<TimeManager>());
+
+    [SerializeField] private PlayerScript _player;
+    public static PlayerScript Player
+    {
+        get => Instance._player ?? (Instance._player = FindFirstObjectByType<PlayerScript>());
+        set
+        {
+            if (Instance._player == value) return;
+            if (Instance._player != null) Destroy(Instance._player);
+            Instance._player = value;
+        }
+    }
 }
