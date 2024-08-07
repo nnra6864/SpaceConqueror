@@ -58,7 +58,7 @@ Material:
     - _ColorNoiseScale: 0.1
     - _ColorNoiseSpeed: 0.25
     - _EnableExternalAlpha: 0
-    - _FogNoiseScale: 0.15
+    - _FogNoiseScale: 0.25
     - _FogNoiseSpeed: 1
     - _StarIntensity: 100000
     - _StarScale: 30
@@ -72,9 +72,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorNoiseMinMax: {r: 0, g: 1, b: 0, a: 0}
     - _ColorNoiseSmoothstep: {r: 0, g: 1, b: 0, a: 0}
-    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FogNoiseMinMax: {r: 0, g: 0.1, b: 0, a: 0}
-    - _FogNoiseSmoothstep: {r: 0.25, g: 4, b: 0, a: 0}
+    - _FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _FogNoiseMinMax: {r: 0, g: 0.01, b: 0, a: 0}
+    - _FogNoiseSmoothstep: {r: 0.25, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _StarColor: {r: 766.99615, g: 758.00793, b: 191.74904, a: 1}
   m_BuildTextureStacks: []
