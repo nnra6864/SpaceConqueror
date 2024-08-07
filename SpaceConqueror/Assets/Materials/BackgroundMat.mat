@@ -60,9 +60,9 @@ Material:
     - _EnableExternalAlpha: 0
     - _FogNoiseScale: 0.15
     - _FogNoiseSpeed: 1
-    - _StarIntensity: 15
-    - _StarScale: 15
-    - _StarSparsity: 20
+    - _StarIntensity: 100000
+    - _StarScale: 30
+    - _StarSparsity: 34
     - _StarSpeed: 0.01
     - _ZWrite: 0
     m_Colors:

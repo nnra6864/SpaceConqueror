@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
     public static TimeManager TimeManager =>
         Instance._timeManager ?? (Instance._timeManager = GO.GetOrAddComponent<TimeManager>());
 
+    [SerializeField] private Camera _camera;
+    //public static Camera Camera => Instance._camera ?? (Instance._camera = Camera.main);
+    public static Camera Camera => Instance._camera == null ? Instance._camera = Camera.main : Instance._camera;
+    
     [SerializeField] private PlayerScript _player;
     public static PlayerScript Player
     {
