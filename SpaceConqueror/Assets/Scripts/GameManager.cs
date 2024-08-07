@@ -1,5 +1,6 @@
 using NnUtils.Scripts;
 using Player;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -32,8 +33,19 @@ public class GameManager : MonoBehaviour
         Instance._timeManager ?? (Instance._timeManager = GO.GetOrAddComponent<TimeManager>());
 
     [SerializeField] private Camera _camera;
-    //public static Camera Camera => Instance._camera ?? (Instance._camera = Camera.main);
     public static Camera Camera => Instance._camera == null ? Instance._camera = Camera.main : Instance._camera;
+
+    [SerializeField] private CinemachineCamera _cineCam;
+    public static CinemachineCamera CineCam
+    {
+        get => Instance._cineCam ?? (Instance._cineCam = FindFirstObjectByType<CinemachineCamera>());
+        set
+        {
+            if (Instance._cineCam == value) return;
+            if (Instance._cineCam != null) Destroy(Instance._cineCam);
+            Instance._cineCam = value;
+        }
+    }
     
     [SerializeField] private PlayerScript _player;
     public static PlayerScript Player

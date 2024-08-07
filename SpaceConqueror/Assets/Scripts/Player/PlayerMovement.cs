@@ -5,7 +5,7 @@ namespace Player
 {
     public class PlayerMovement : NnBehaviour
     {
-        private PlayerScript Player => GameManager.Player;
+        private static PlayerScript Player => GameManager.Player;
         [SerializeField] private float _speed = 30;
         [SerializeField] private float _maxSpeed = 6;
 
