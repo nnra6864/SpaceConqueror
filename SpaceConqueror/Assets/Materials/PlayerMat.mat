@@ -132,7 +132,7 @@ Material:
     - _GlossyReflections: 0
     - _LightInfluenceStrength: 0.25
     - _Metallic: 0
-    - _NormalStrength: 5
+    - _NormalStrength: 10
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
