@@ -1,4 +1,5 @@
 using System.Collections;
+using Core;
 using NnUtils.Scripts;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Player
             Player.IsDashing = true;
             Player.Rigidbody.AddForce(_dashForce * transform.up, ForceMode2D.Impulse);
             TimeManager.ChangeTimeScale(
-                new[] { 1.5f, 1f },
+                new[] { 2f, 1f },
                 new[] { 0f, 1f },
                 new[] { Easings.Types.None, Easings.Types.CubicOut }
                 );

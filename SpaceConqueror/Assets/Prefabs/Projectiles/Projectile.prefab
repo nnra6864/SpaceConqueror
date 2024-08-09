@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2422490140417967218}
   - component: {fileID: 1997960941517510769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8365736068825244021}
   - component: {fileID: 6619032546256420487}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,8 +181,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4895157643331851250}
   - component: {fileID: 8585732826553741532}
-  - component: {fileID: 346408146850064887}
-  m_Layer: 0
+  - component: {fileID: 5613734964672191558}
+  - component: {fileID: 212713025545591021}
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,11 +230,47 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &346408146850064887
+--- !u!58 &5613734964672191558
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610103820518882239}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &212713025545591021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,9 +279,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5610103820518882239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b0f75830caa6207ea78491a0e04d061, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cf943c46a598a8ffa8211d7a9f2cb91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 5
+  _health: 5
   _rb: {fileID: 8585732826553741532}
   _projectileSpeed: 25
   _lifetime: 5
