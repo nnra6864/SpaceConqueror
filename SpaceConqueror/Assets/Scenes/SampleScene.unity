@@ -1161,8 +1161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ea3235a7b3954d4aee332d8c1c2537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashForce: 50
+  _dashDuration: 1
   _dashCooldown: 10
+  _dashForce: 25
+  _maxDashForce: 100
+  _dashDamage: 0
+  _maxDashDamage: 100
 --- !u!114 &1798880678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1182,10 @@ MonoBehaviour:
   _rigidbody: {fileID: 1798880675}
   _collider: {fileID: 1798880679}
   _energy: {fileID: 1798880682}
+  _aim: {fileID: 0}
+  _zoom: {fileID: 0}
+  _movement: {fileID: 0}
+  _dash: {fileID: 0}
   _spriteRenderer: {fileID: 5210463}
   _emissionLight: {fileID: 2110019788}
   _energyRefillRate: 0.05
