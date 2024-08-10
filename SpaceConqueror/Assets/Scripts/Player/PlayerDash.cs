@@ -14,23 +14,32 @@ namespace Player
 
         private void Update()
         {
-            if (TimeManager.IsPaused || Player.IsDashing) return;
+            if (TimeManager.IsPaused) return;
             if (Input.GetKeyDown(KeyCode.LeftShift)) Dash();
         }
 
-        private void Dash() => StartCoroutine(DashRoutine());
+        private void Dash()
+        {
+            if (Player.Energy.Level < 0.25f) return;
+            StartNullRoutine(ref _dashRoutine, DashRoutine());
+        }
 
+        private Coroutine _dashRoutine;
         private IEnumerator DashRoutine()
         {
             Player.IsDashing = true;
-            Player.Rigidbody.AddForce(_dashForce * transform.up, ForceMode2D.Impulse);
+            Player.Collider.isTrigger = true;
+            Player.Rigidbody.AddForce(_dashForce * Player.Energy.Level * transform.up, ForceMode2D.Impulse);
+            Player.Energy.Level /= 2;
             TimeManager.ChangeTimeScale(
                 new[] { 2f, 1f },
                 new[] { 0f, 1f },
                 new[] { Easings.Types.None, Easings.Types.CubicOut }
                 );
-            yield return new WaitForSecondsWhileNot(5f , () => TimeManager.IsPaused, true);
+            yield return new WaitForSecondsWhileNot(1f , () => TimeManager.IsPaused, true);
             Player.IsDashing = false;
+            Player.Collider.isTrigger = false;
+            _dashRoutine = null;
         }
     }
 }

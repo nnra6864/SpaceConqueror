@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b4beb7c46eab0a4a0eb68afa95f3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectilePrefab: {fileID: 212713025545591021, guid: a92720bf9bb4ef9648aef0da09f0fc11, type: 3}
+  _ammo: {fileID: 212713025545591021, guid: a92720bf9bb4ef9648aef0da09f0fc11, type: 3}
   _cooldown: 1
   _knockback: 5
 --- !u!1 &1798880673
@@ -1080,6 +1080,7 @@ GameObject:
   - component: {fileID: 1798880677}
   - component: {fileID: 1798880680}
   - component: {fileID: 1798880681}
+  - component: {fileID: 1798880682}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1141,8 +1142,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1757377701}
   - {fileID: 5210462}
+  - {fileID: 1757377701}
   - {fileID: 2110019787}
   - {fileID: 2045819288}
   - {fileID: 2119474460}
@@ -1175,6 +1176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1798880675}
+  _collider: {fileID: 1798880679}
+  _energy: {fileID: 1798880682}
+  _spriteRenderer: {fileID: 5210463}
+  _emissionLight: {fileID: 2110019788}
+  _energyRefillRate: 0.05
 --- !u!61 &1798880679
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1219,7 +1225,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &1798880680
 MonoBehaviour:
@@ -1248,6 +1254,19 @@ MonoBehaviour:
   _zoomStep: 20
   _zoomTime: 1
   _zoomMinMax: {x: 3, y: 10}
+--- !u!114 &1798880682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798880673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e31299080fe0fde0889521ad4587636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _refillRate: 0.05
 --- !u!1 &1814886985
 GameObject:
   m_ObjectHideFlags: 0

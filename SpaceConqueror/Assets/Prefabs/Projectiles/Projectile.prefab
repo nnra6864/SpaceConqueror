@@ -284,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 5
   _health: 5
+  _energy: 0.1
   _rb: {fileID: 8585732826553741532}
   _projectileSpeed: 25
   _lifetime: 5

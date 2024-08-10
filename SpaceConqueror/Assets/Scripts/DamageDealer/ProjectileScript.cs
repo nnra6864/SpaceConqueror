@@ -1,11 +1,10 @@
-using System;
 using Core;
 using UnityEngine;
 
 namespace DamageDealer
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class ProjectileScript : DamageDealer
+    public class ProjectileScript : Ammo
     {
         [Header("Projectile")]
         [SerializeField] private Rigidbody2D _rb;

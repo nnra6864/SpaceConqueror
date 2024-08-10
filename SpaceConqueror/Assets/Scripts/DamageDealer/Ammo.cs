@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace DamageDealer
 {
-    public class DamageDealer : NnBehaviour, IHittable
+    public class Ammo : NnBehaviour, IHittable
     {
-        [Header("Damage Dealer")]
+        [Header("Ammo")]
         [SerializeField] protected float _damage;
         public float Damage => _damage;
         
@@ -20,6 +20,9 @@ namespace DamageDealer
                 if (Health <= 0) Die();
             }
         }
+
+        [SerializeField] protected float _energy;
+        public float Energy => _energy;
 
         protected virtual void DealDamage(IHittable hittable) => hittable.GetHit(Damage);
         protected virtual void TakeDamage(float damage) => Health -= damage;
