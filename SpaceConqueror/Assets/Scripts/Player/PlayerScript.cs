@@ -19,11 +19,23 @@ namespace Player
         [SerializeField] private EnergyScript _energy;
         public EnergyScript Energy => _energy;
 
+        [SerializeField] private PlayerAim _aim;
+        public PlayerAim Aim => _aim;
+
+        [SerializeField] private PlayerZoom _zoom;
+        public PlayerZoom Zoom => _zoom;
+        
+        [SerializeField] private PlayerMovement _movement;
+        public PlayerMovement Movement => _movement;
+
+        [SerializeField] private PlayerDash _dash;
+        public PlayerDash Dash => _dash;
+        
         [SerializeField] private SpriteRenderer _spriteRenderer;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
 
         [SerializeField] private Light2D _emissionLight;
-        public Light2D EmissionLight => EmissionLight;
+        public Light2D EmissionLight => _emissionLight;
         private float _emissionLightIntensity;
 
         private Renderer _renderer;
@@ -45,7 +57,11 @@ namespace Player
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collider = GetComponent<Collider2D>();
+            _aim = GetComponent<PlayerAim>();
+            _zoom = GetComponent<PlayerZoom>();
             _energy = GetComponent<EnergyScript>();
+            _movement = GetComponent<PlayerMovement>();
+            _dash = GetComponent<PlayerDash>();
         }
 
         private void Awake()
