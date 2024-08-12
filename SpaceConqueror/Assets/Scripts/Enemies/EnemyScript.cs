@@ -2,7 +2,7 @@ using Core;
 using NnUtils.Scripts;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemies
 {
     public class EnemyScript : NnBehaviour, IHittable
     {

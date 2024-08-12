@@ -42,9 +42,9 @@ namespace Player
 
         [Header("Values")]
         
-        [SerializeField] private float _energyRefillRate = 0.1f;
+        private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
         
-        private static readonly int EmissionStrength = Shader.PropertyToID("EmissionStrength");
+        [SerializeField] private float _energyRefillRate = 0.1f;
         
         private bool _isDashing;
         public bool IsDashing
@@ -73,7 +73,7 @@ namespace Player
 
         private void OnEnergyChanged(float energy)
         {
-            _spriteRenderer.material.SetFloat(EmissionStrength, energy);
+            _spriteRenderer.material.SetFloat(EmissionIntensity, energy);
             _emissionLight.intensity = _emissionLightIntensity * energy;
         }
     }
