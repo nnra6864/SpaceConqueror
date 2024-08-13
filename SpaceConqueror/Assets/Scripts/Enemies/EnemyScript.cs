@@ -24,6 +24,6 @@ namespace Enemies
 
         public float GetHealth() => Health;
 
-        private void Die() => Destroy(gameObject);
+        public void Die() => Destroy(gameObject);
     }
 }
