@@ -1796,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _zoomStep: 20
-  _zoomTime: 1
+  _zoomTime: 1.5
   _zoomMinMax: {x: 3, y: 10}
 --- !u!114 &1798880682
 MonoBehaviour:
