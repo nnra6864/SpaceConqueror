@@ -2,7 +2,7 @@ using Core;
 using NnUtils.Scripts;
 using UnityEngine;
 
-namespace Enemy
+namespace Enemies
 {
     public class EnemyScript : NnBehaviour, IHittable
     {
@@ -24,6 +24,6 @@ namespace Enemy
 
         public float GetHealth() => Health;
 
-        private void Die() => Destroy(gameObject);
+        public void Die() => Destroy(gameObject);
     }
 }
