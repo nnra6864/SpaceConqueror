@@ -8,7 +8,7 @@ namespace Player
 {
     public class WeaponScript : NnBehaviour
     {
-        private static TimeManager TimeManager => GameManager.TimeManager;
+        private static TimeManager TimeManager => NnManager.TimeManager;
         private static PlayerScript Player => GameManager.Player;
         
         [SerializeField] private Ammo _ammo;

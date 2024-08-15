@@ -17,7 +17,7 @@ namespace Enemies.Bomber
         private static readonly WaitForSeconds UpdateInterval = new(0.1f); //Cached the update interval
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
         private static PlayerScript Player => GameManager.Player;
-        private static TimeManager TimeManager => GameManager.TimeManager;
+        private static TimeManager TimeManager => NnManager.TimeManager;
         
         private float _baseLightIntensity;
         private Material _mat;

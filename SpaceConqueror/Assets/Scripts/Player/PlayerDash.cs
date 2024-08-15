@@ -9,7 +9,7 @@ namespace Player
     public class PlayerDash : NnBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
-        private static TimeManager TimeManager => GameManager.TimeManager;
+        private static TimeManager TimeManager => NnManager.TimeManager;
         [SerializeField] private float _dashDuration = 1;
         [SerializeField] private float _dashCooldown = 10;
 

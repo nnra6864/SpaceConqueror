@@ -7,7 +7,7 @@ namespace Player
     public class PlayerAim : NnBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
-        private static TimeManager TimeManager => GameManager.TimeManager;
+        private static TimeManager TimeManager => NnManager.TimeManager;
         private static Camera Cam => GameManager.Camera;
 
         private void Update()

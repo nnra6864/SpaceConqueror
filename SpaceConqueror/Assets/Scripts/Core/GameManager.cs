@@ -28,12 +28,8 @@ namespace Core
         }
         private void Awake() => Instance = GetComponent<GameManager>();
     
-        private static GameObject GO => Instance.gameObject;
-
-        [SerializeField] private TimeManager _timeManager;
-        public static TimeManager TimeManager =>
-            Instance._timeManager ?? (Instance._timeManager = GO.GetOrAddComponent<TimeManager>());
-
+        private static GameObject GameObject => Instance.gameObject;
+        
         [SerializeField] private Camera _camera;
         public static Camera Camera => Instance._camera == null ? Instance._camera = Camera.main : Instance._camera;
 
