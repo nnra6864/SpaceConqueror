@@ -2,6 +2,7 @@ using System.Collections;
 using Core;
 using NnUtils.Scripts;
 using DamageDealer;
+using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +10,7 @@ namespace Player
     public class WeaponScript : NnBehaviour
     {
         private static TimeManager TimeManager => NnManager.TimeManager;
+        private static AudioManager AudioManager => NnManager.AudioManager;
         private static PlayerScript Player => GameManager.Player;
         
         [SerializeField] private Ammo _ammo;
@@ -47,6 +49,7 @@ namespace Player
                 new[] { 0f, 1f },
                 new[] { Easings.Types.None, Easings.Types.CubicOut }
                 );
+            AudioManager.Play("PlayerShoot");
             yield return new WaitForSecondsWhileNot(_cooldown, () => TimeManager.IsPaused, true);
             _attackRoutine = null;
             yield return null;
