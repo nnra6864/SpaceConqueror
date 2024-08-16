@@ -257,6 +257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -314,6 +318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -370,6 +378,10 @@ PrefabInstance:
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -598,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -655,6 +671,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -705,7 +725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef90621458a514198c3c7109dec3602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeManager: {fileID: 0}
   _camera: {fileID: 0}
   _cineCam: {fileID: 0}
   _player: {fileID: 0}
@@ -773,6 +792,10 @@ PrefabInstance:
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -906,6 +929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -963,6 +990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1019,6 +1050,10 @@ PrefabInstance:
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1254,6 +1289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1310,6 +1349,10 @@ PrefabInstance:
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1386,6 +1429,81 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417108376}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1534462167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534462171}
+  - component: {fileID: 1534462170}
+  - component: {fileID: 1534462169}
+  - component: {fileID: 1534462168}
+  m_Layer: 0
+  m_Name: NnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1534462168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534462167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da49b57c527e1cb80bf63f4b85cc43dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 11400000, guid: 5fd992bc179a1e2aea11428269897c4a, type: 2}
+--- !u!114 &1534462169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534462167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f384f20c4cd70d4ba2a64dc62b34c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPaused: 0
+--- !u!114 &1534462170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534462167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46195f5aefe8ab1d09b09fd5491a9842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeManager: {fileID: 1534462169}
+  _audioManager: {fileID: 1534462168}
+--- !u!4 &1534462171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534462167}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1547,6 +1665,10 @@ PrefabInstance:
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2054,6 +2176,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2317,6 +2443,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1417108379}
   - {fileID: 1964207583}
+  - {fileID: 1534462171}
   - {fileID: 709534584}
   - {fileID: 519420032}
   - {fileID: 1814886988}
