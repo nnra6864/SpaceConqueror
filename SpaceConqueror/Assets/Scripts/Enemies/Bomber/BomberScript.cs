@@ -8,8 +8,8 @@ using Random = UnityEngine.Random;
 
 namespace Enemies.Bomber
 {
-    [RequireComponent(typeof(EnemyScript), typeof(Rigidbody2D))]
-    public class BomberScript : NnBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class BomberScript : NnBehaviour, IHittable
     {
         private const float ChargeVelMultiplier = 0.025f; //Used to multiply the velocity when charging
         private const float DimTime = 2; //Time in seconds to dim the lights and emission
@@ -23,7 +23,6 @@ namespace Enemies.Bomber
         private Material _mat;
 
         [Header("Components")]
-        [SerializeField] private EnemyScript _enemy;
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Light2D _emissionLight;
         [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -37,9 +36,19 @@ namespace Enemies.Bomber
         [SerializeField] private float _attackVelocity = 50;
         [SerializeField] private float _cooldown = 5;
 
+        [SerializeField] private float _health;
+        public float Health
+        {
+            get => _health;
+            set
+            {
+                _health = value < 0 ? 0 : value;
+                if (_health <= 0) Die();
+            }
+        }
+        
         private void Reset()
         {
-            _enemy = GetComponent<EnemyScript>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
@@ -59,7 +68,7 @@ namespace Enemies.Bomber
             {
                 if (!Player)
                 {
-                    _enemy.Die();
+                    Die();
                     yield break;
                 }
                 
@@ -121,5 +130,14 @@ namespace Enemies.Bomber
             //Start attacking again
             RestartRoutine(ref _attackRoutine, AttackRoutine());
         }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
+
+        public void GetHit(float damage) => Health -= damage;
+
+        public float GetHealth() => Health;
     }
 }
