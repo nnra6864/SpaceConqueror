@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Random = UnityEngine.Random;
 
-namespace Enemies.Bomber
+namespace Enemies
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class BomberScript : NnBehaviour, IHittable
