@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: ProjectileHit
   Clip: {fileID: 8300000, guid: 89519e546079a3e2aa2879c43565ba51, type: 3}
   Volume: 1
-  PitchRange: {x: 0.8, y: 1}
+  PitchRange: {x: 0.8, y: 1.2}
   GetPitchOnPlay: 1
   Unscaled: 0
   Loop: 0
-  SpatialBlend: 0
+  SpatialBlend: 0.8
   FadeIn: 0
   FadeInTime: 1
   FadeInEasing: 1

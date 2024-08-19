@@ -14,9 +14,11 @@ namespace Core
                 if (_instance != null) return _instance;
                 
                 _instance = FindFirstObjectByType<GameManager>();
-                var go = new GameObject("NnManager");
-                if (_instance == null) _instance = go.AddComponent<GameManager>();
+                if (_instance != null) return _instance;
                 
+                var go = new GameObject("GameManager");
+                DontDestroyOnLoad(go);
+                _instance = go.AddComponent<GameManager>();
                 return _instance;
             }
         }

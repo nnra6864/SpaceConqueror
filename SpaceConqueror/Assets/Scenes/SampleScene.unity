@@ -1047,6 +1047,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4860683406263492429, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
+      propertyPath: _attackDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8882404021022566894, guid: 232e1513d7a5c520fb259eeecef2f527, type: 3}
       propertyPath: m_Name
       value: Bomber

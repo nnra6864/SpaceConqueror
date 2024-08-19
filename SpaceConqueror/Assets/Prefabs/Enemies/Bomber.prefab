@@ -296,7 +296,7 @@ MonoBehaviour:
   _emissionLight: {fileID: 3833808668618465591}
   _spriteRenderer: {fileID: 8732357365495980861}
   _difficultyRange: {x: 0.75, y: 1.25}
-  _attackDistance: 10
+  _attackDistance: 3
   _retreatDistance: 30
   _chargeTime: 3
   _chargeRotation: 720
