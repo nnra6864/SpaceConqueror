@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9de8b6169e8c40e7a3a40cb678bd6a35, type: 3}
-  m_Name: PlayerShoot
+  m_Name: PlayerDash
   m_EditorClassIdentifier: 
   Group: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
-  Name: PlayerShoot
-  Clip: {fileID: 8300000, guid: 0ba79101fb8681384b41945202a540be, type: 3}
+  Name: PlayerDash
+  Clip: {fileID: 8300000, guid: 40e4903178080b0648475f5d7426683e, type: 3}
   Volume: 1
-  PitchRange: {x: 0.5, y: 0.75}
-  GetPitchOnPlay: 1
+  PitchRange: {x: 1, y: 1}
+  GetPitchOnPlay: 0
   Unscaled: 0
   Loop: 0
   SpatialBlend: 0

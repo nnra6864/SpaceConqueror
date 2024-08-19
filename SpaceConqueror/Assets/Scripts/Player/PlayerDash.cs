@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
+using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,9 @@ namespace Player
     {
         private static PlayerScript Player => GameManager.Player;
         private static TimeManager TimeManager => NnManager.TimeManager;
+        private static AudioManager AudioManager => NnManager.AudioManager;
+
+        [SerializeField] private Sound _dashSound;
         [SerializeField] private float _dashDuration = 1;
         [SerializeField] private float _dashCooldown = 10;
 
@@ -51,6 +55,7 @@ namespace Player
             Player.IsDashing = true;
             Player.Collider.isTrigger = true;
             Player.Rigidbody.AddForce(_dashForce * energy * transform.up, ForceMode2D.Impulse);
+            AudioManager.Play("PlayerDash", 1.25f - energy * 0.5f);
             Player.Energy.Level /= 2;
             
             TimeManager.ChangeTimeScale(

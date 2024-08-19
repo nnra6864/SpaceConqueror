@@ -1470,6 +1470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sounds:
   - {fileID: 11400000, guid: 5fd992bc179a1e2aea11428269897c4a, type: 2}
+  - {fileID: 11400000, guid: 376b4ecf33d1ab28b9f93354ccff0801, type: 2}
 --- !u!114 &1534462169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,6 +1820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ea3235a7b3954d4aee332d8c1c2537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dashSound: {fileID: 0}
   _dashDuration: 1
   _dashCooldown: 10
   _dashForce: 25
