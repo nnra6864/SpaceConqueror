@@ -20,7 +20,7 @@ namespace DamageDealer
             get => _health;
             protected set
             {
-                Health = value < 0 ? 0 : value;
+                _health = value < 0 ? 0 : value;
                 if (Health <= 0) Die();
             }
         }

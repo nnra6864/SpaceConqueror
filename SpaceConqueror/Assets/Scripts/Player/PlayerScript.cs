@@ -1,13 +1,18 @@
+using System;
 using Core;
 using NnUtils.Scripts;
+using NnUtils.Scripts.Audio;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(EnergyScript))]
-    public class PlayerScript : NnBehaviour
+    public class PlayerScript : NnBehaviour, IHittable
     {
+        private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
+        private static AudioManager AudioManager => NnManager.AudioManager;
+        
         [Header("Components")]
         
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -37,15 +42,26 @@ namespace Player
         [SerializeField] private Light2D _emissionLight;
         public Light2D EmissionLight => _emissionLight;
         private float _emissionLightIntensity;
-
         private Renderer _renderer;
 
-        [Header("Values")]
         
-        private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
+        [Header("Values")]
         
         [SerializeField] private float _energyRefillRate = 0.1f;
         
+        [SerializeField] private float _health = 100;
+        public float Health
+        {
+            get => _health;
+            set
+            {
+                if (Mathf.Approximately(_health, value)) return;
+                _health = value;
+                OnHealthChanged?.Invoke(Health);
+            }
+        }
+        public Action<float> OnHealthChanged;
+
         private bool _isDashing;
         public bool IsDashing
         {
@@ -76,5 +92,13 @@ namespace Player
             _spriteRenderer.material.SetFloat(EmissionIntensity, energy);
             _emissionLight.intensity = _emissionLightIntensity * energy;
         }
+
+        public void GetHit(float damage)
+        {
+            Health -= damage;
+            AudioManager.Play("Hit");
+        }
+
+        public float GetHealth() => Health;
     }
 }

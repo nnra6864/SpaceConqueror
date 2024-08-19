@@ -1,6 +1,7 @@
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
+using NnUtils.Scripts.Audio;
 using Player;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -18,14 +19,18 @@ namespace Enemies
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
         private static PlayerScript Player => GameManager.Player;
         private static TimeManager TimeManager => NnManager.TimeManager;
+        private static AudioManager AudioManager => NnManager.AudioManager;
         
         private float _baseLightIntensity;
+        private bool _isAttacking;
         private Material _mat;
 
         [Header("Components")]
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Light2D _emissionLight;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private Sound _dashSound;
+        [SerializeField] private Sound _hitSound;
 
         [Header("Values")]
         [SerializeField] private Vector2 _difficultyRange = new(0.75f, 1.25f);
@@ -62,6 +67,13 @@ namespace Enemies
 
         private void Start() => StartCoroutine(UpdateRoutine());
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (!_isAttacking) return;
+            if (!other.gameObject.TryGetComponent<IHittable>(out var hittable)) return;
+            hittable.GetHit(Mathf.Clamp(_rb.linearVelocity.magnitude, 5, 25));
+        }
+
         private IEnumerator UpdateRoutine()
         {
             while (true)
@@ -82,6 +94,7 @@ namespace Enemies
         private Coroutine _attackRoutine;
         private IEnumerator AttackRoutine()
         {
+            _isAttacking = true;
             var difficulty = Random.Range(_difficultyRange.x, _difficultyRange.y);
             var chargeTime = _chargeTime / difficulty;
             var chargeRot = _chargeRotation * Misc.RandomInvert * difficulty;
@@ -107,6 +120,7 @@ namespace Enemies
             //Attack
             dir = ((Vector2)(Player.transform.position - transform.position)).normalized;
             _rb.AddForce(attackVel * dir, ForceMode2D.Impulse);
+            AudioManager.PlayAt(_dashSound, transform.position, 1.5f - difficulty * 0.5f);
 
             //Dimming lights and emission
             while (lerpPos > 0)
@@ -116,6 +130,9 @@ namespace Enemies
                 _mat.SetFloat(EmissionIntensity, t);
                 yield return null;
             }
+
+            //Don't deal damage anymore
+            _isAttacking = false;
             
             //Cooldown
             yield return new WaitForSecondsWhileNot(cooldown, () => TimeManager.IsPaused);
@@ -136,7 +153,11 @@ namespace Enemies
             Destroy(gameObject);
         }
 
-        public void GetHit(float damage) => Health -= damage;
+        public void GetHit(float damage)
+        {
+            Health -= damage;
+            AudioManager.PlayAt(_hitSound, transform.position);
+        }
 
         public float GetHealth() => Health;
     }

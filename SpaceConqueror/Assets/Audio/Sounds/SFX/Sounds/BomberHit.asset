@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9de8b6169e8c40e7a3a40cb678bd6a35, type: 3}
-  m_Name: ProjectileDischarge
+  m_Name: BomberHit
   m_EditorClassIdentifier: 
   Group: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
-  Name: ProjectileDischarge
-  Clip: {fileID: 8300000, guid: 0ba79101fb8681384b41945202a540be, type: 3}
+  Name: BomberHit
+  Clip: {fileID: 8300000, guid: 25a08fdd865a4fadfbfaceaa2e3bf7c4, type: 3}
   Volume: 1
-  PitchRange: {x: 0.5, y: 0.75}
+  PitchRange: {x: 0.8, y: 1.2}
   GetPitchOnPlay: 1
   Unscaled: 0
   Loop: 0
-  SpatialBlend: 0
+  SpatialBlend: 0.6
   FadeIn: 0
   FadeInTime: 1
   FadeInEasing: 1
