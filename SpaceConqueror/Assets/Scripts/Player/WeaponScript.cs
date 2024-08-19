@@ -49,7 +49,7 @@ namespace Player
                 new[] { 0f, 1f },
                 new[] { Easings.Types.None, Easings.Types.CubicOut }
                 );
-            AudioManager.Play("PlayerShoot");
+            AudioManager.Play(_ammo.DischargeSound.Name);
             yield return new WaitForSecondsWhileNot(_cooldown, () => TimeManager.IsPaused, true);
             _attackRoutine = null;
             yield return null;

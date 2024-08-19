@@ -1469,8 +1469,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sounds:
-  - {fileID: 11400000, guid: 5fd992bc179a1e2aea11428269897c4a, type: 2}
   - {fileID: 11400000, guid: 376b4ecf33d1ab28b9f93354ccff0801, type: 2}
+  - {fileID: 11400000, guid: f7fcb853eab404de485b4eade1fdcefa, type: 2}
+  - {fileID: 11400000, guid: ac4dc1f837726c684bd79c1be92f9cbf, type: 2}
 --- !u!114 &1534462169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Core;
 using NnUtils.Scripts;
+using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace DamageDealer
@@ -7,6 +8,9 @@ namespace DamageDealer
     public class Ammo : NnBehaviour, IHittable
     {
         [Header("Ammo")]
+        [SerializeField] private Sound _dischargeSound;
+        public Sound DischargeSound => _dischargeSound;
+        
         [SerializeField] protected float _damage;
         public float Damage => _damage;
         

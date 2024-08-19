@@ -1,4 +1,6 @@
 using Core;
+using NnUtils.Scripts;
+using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace DamageDealer
@@ -6,8 +8,11 @@ namespace DamageDealer
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileScript : Ammo
     {
+        private static AudioManager AudioManager => NnManager.AudioManager;
+        
         [Header("Projectile")]
         [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private Sound _hitSound;
         [SerializeField] private float _projectileSpeed = 25f;
         [SerializeField] private float _lifetime = 5;
 
@@ -30,6 +35,7 @@ namespace DamageDealer
         {
             if (other.TryGetComponent<IHittable>(out var hittable))
                 DealDamage(hittable);
+            AudioManager.PlayAt(_hitSound, transform.position);
             Die();
         }
 
