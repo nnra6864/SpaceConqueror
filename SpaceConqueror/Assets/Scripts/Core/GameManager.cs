@@ -14,7 +14,11 @@ namespace Core
                 if (_instance != null) return _instance;
                 
                 _instance = FindFirstObjectByType<GameManager>();
-                if (_instance != null) return _instance;
+                if (_instance != null)
+                {
+                    DontDestroyOnLoad(_instance);
+                    return _instance;
+                }
                 
                 var go = new GameObject("GameManager");
                 DontDestroyOnLoad(go);

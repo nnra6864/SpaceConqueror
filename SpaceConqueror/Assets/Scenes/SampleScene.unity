@@ -1451,7 +1451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534462171}
   - component: {fileID: 1534462170}
-  - component: {fileID: 1534462169}
+  - component: {fileID: 1534462172}
   - component: {fileID: 1534462168}
   m_Layer: 0
   m_Name: NnManager
@@ -1476,19 +1476,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 376b4ecf33d1ab28b9f93354ccff0801, type: 2}
   - {fileID: 11400000, guid: f7fcb853eab404de485b4eade1fdcefa, type: 2}
   - {fileID: 11400000, guid: ac4dc1f837726c684bd79c1be92f9cbf, type: 2}
---- !u!114 &1534462169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534462167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f384f20c4cd70d4ba2a64dc62b34c82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsPaused: 0
 --- !u!114 &1534462170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1501,7 +1488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46195f5aefe8ab1d09b09fd5491a9842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeManager: {fileID: 1534462169}
+  _timeManager: {fileID: 0}
   _audioManager: {fileID: 1534462168}
 --- !u!4 &1534462171
 Transform:
@@ -1518,6 +1505,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1534462172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534462167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f384f20c4cd70d4ba2a64dc62b34c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPaused: 0
 --- !u!1 &1619156064
 GameObject:
   m_ObjectHideFlags: 0
