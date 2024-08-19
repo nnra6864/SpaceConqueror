@@ -96,7 +96,7 @@ namespace Player
         public void GetHit(float damage)
         {
             Health -= damage;
-            AudioManager.Play("Hit");
+            AudioManager.Play("PlayerHit");
         }
 
         public float GetHealth() => Health;
