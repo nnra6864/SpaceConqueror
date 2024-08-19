@@ -1,4 +1,3 @@
-using NnUtils.Scripts;
 using Player;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -12,22 +11,29 @@ namespace Core
         {
             get
             {
-                if (_instance == null) 
-                    _instance = new GameObject("GameManager", typeof(GameManager)).GetComponent<GameManager>();
+                if (_instance != null) return _instance;
+                
+                _instance = FindFirstObjectByType<GameManager>();
+                var go = new GameObject("NnManager");
+                if (_instance == null) _instance = go.AddComponent<GameManager>();
+                
                 return _instance;
             }
-            private set
+        }
+        
+        private void Awake()
+        {
+            if (_instance == null)
             {
-                if (_instance != null && _instance != value)
-                {
-                    Destroy(value.gameObject);
-                    return;
-                }
-                _instance = value;
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else if (_instance != this)
+            {
+                Destroy(gameObject);
             }
         }
-        private void Awake() => Instance = GetComponent<GameManager>();
-    
+        
         private static GameObject GameObject => Instance.gameObject;
         
         [SerializeField] private Camera _camera;
