@@ -56,7 +56,8 @@ namespace Player
             set
             {
                 if (Mathf.Approximately(_health, value)) return;
-                _health = value;
+                _health = value < 0 ? 0 : value;
+                if (Health <= 0) Die();
                 OnHealthChanged?.Invoke(Health);
             }
         }
@@ -100,5 +101,10 @@ namespace Player
         }
 
         public float GetHealth() => Health;
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }

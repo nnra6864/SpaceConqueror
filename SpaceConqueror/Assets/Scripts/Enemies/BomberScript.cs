@@ -71,18 +71,14 @@ namespace Enemies
         {
             if (!_isAttacking) return;
             if (!other.gameObject.TryGetComponent<IHittable>(out var hittable)) return;
-            hittable.GetHit(Mathf.Clamp(_rb.linearVelocity.magnitude, 5, 25));
+            hittable.GetHit(Mathf.Clamp(_rb.linearVelocity.magnitude + _rb.angularVelocity, 5, 25));
         }
 
         private IEnumerator UpdateRoutine()
         {
             while (true)
             {
-                if (!Player)
-                {
-                    Die();
-                    yield break;
-                }
+                if (PlayerDead()) yield break;
                 
                 if (Vector3.Distance(Player.transform.position, transform.position) <= _attackDistance)
                     StartNullRoutine(ref _attackRoutine, AttackRoutine());
@@ -107,6 +103,7 @@ namespace Enemies
             float lerpPos = 0;
             while (lerpPos < 1)
             {
+                if (PlayerDead()) yield break;
                 dir = ((Vector2)(transform.position - Player.transform.position)).normalized;
                 _rb.linearVelocity += chargeVel * Time.deltaTime * dir;
                 _rb.angularVelocity += chargeRot * Time.deltaTime;
@@ -117,6 +114,8 @@ namespace Enemies
                 yield return null;
             }
 
+            if (PlayerDead()) yield break;
+            
             //Attack
             dir = ((Vector2)(Player.transform.position - transform.position)).normalized;
             _rb.AddForce(attackVel * dir, ForceMode2D.Impulse);
@@ -129,6 +128,7 @@ namespace Enemies
                 _emissionLight.intensity = Mathf.LerpUnclamped(0, _baseLightIntensity, t);
                 _mat.SetFloat(EmissionIntensity, t);
                 yield return null;
+                if (PlayerDead()) yield break;
             }
 
             //Don't deal damage anymore
@@ -136,6 +136,8 @@ namespace Enemies
             
             //Cooldown
             yield return new WaitForSecondsWhileNot(cooldown, () => TimeManager.IsPaused);
+            
+            if (PlayerDead()) yield break;
             
             //Retreat based on distance
             if (Vector3.Distance(Player.transform.position, transform.position) > _retreatDistance)
@@ -160,5 +162,12 @@ namespace Enemies
         }
 
         public float GetHealth() => Health;
+
+        private bool PlayerDead()
+        {
+            if (Player) return false;
+            Die();
+            return true;
+        }
     }
 }

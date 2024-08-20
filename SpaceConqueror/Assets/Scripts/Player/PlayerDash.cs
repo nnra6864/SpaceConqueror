@@ -16,6 +16,7 @@ namespace Player
         [SerializeField] private Sound _dashSound;
         [SerializeField] private float _dashDuration = 1;
         [SerializeField] private float _dashCooldown = 10;
+        [SerializeField] private float _minDashCooldown = 3;
 
         [SerializeField] private float _dashForce = 25;
         [SerializeField] private float _maxDashForce = 100;
@@ -70,6 +71,12 @@ namespace Player
             
             yield return new WaitForSecondsWhileNot(_dashCooldown, () => TimeManager.IsPaused, true);
             _dashRoutine = null;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.TryGetComponent<IHittable>(out var hittable)) return;
+            hittable.GetHit(DashDamage);
         }
     }
 }

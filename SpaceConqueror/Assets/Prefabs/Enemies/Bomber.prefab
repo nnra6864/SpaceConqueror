@@ -298,7 +298,7 @@ MonoBehaviour:
   _dashSound: {fileID: 11400000, guid: 624571051ed0cb46cace6721f6345ce3, type: 2}
   _hitSound: {fileID: 11400000, guid: 4b716373803f20f4b92bc5e916b3b3b2, type: 2}
   _difficultyRange: {x: 0.75, y: 1.25}
-  _attackDistance: 3
+  _attackDistance: 5
   _retreatDistance: 30
   _chargeTime: 3
   _chargeRotation: 720
