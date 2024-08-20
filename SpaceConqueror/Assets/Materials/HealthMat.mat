@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StatSlider
-  m_Shader: {fileID: -6465566751694194690, guid: 2596fb7d6fe5cab47861f1da8c2d00e5, type: 3}
+  m_Name: HealthMat
+  m_Shader: {fileID: -6465566751694194690, guid: 02944c6e1cc246f5988b91a65e5aa397, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 23780de92a4787c47a8a2161e5fb7992, type: 3}
+        m_Texture: {fileID: 2800000, guid: 79aba0b290c471c4ba3d3f818d4e9b15, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 23780de92a4787c47a8a2161e5fb7992, type: 3}
+        m_Texture: {fileID: 2800000, guid: daa49a1f06460a04b9827dd6f0bace08, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -125,9 +125,8 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EmissionDensity: 3
     - _EmissionIntensity: 1
-    - _EmissionSpeed: 10
+    - _EmissionStrength: 1
     - _EnableExternalAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -152,10 +151,8 @@ Material:
     - _BaseCol: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionCol: {r: 0.3764706, g: 4.0784316, b: 6.4, a: 1}
+    - _EmissionCol: {r: 2.1185474, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissionMinMax: {r: 0.1, g: 1, b: 0, a: 0}
-    - _EmissionSmoothstep: {r: 0, g: 1, b: 0, a: 0}
     - _LightInfluenceMinMax: {r: 1, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
