@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
@@ -20,7 +21,8 @@ namespace Enemies
         private static PlayerScript Player => GameManager.Player;
         private static TimeManager TimeManager => NnManager.TimeManager;
         private static AudioManager AudioManager => NnManager.AudioManager;
-        
+
+        private float _difficulty;
         private float _baseLightIntensity;
         private bool _isAttacking;
         private Material _mat;
@@ -34,8 +36,9 @@ namespace Enemies
 
         [Header("Values")]
         [SerializeField] private Vector2 _difficultyRange = new(0.75f, 1.25f);
-        [SerializeField] private float _attackDistance = 10;
-        [SerializeField] private float _retreatDistance = 30;
+        [SerializeField] private float _attackDistance = 5;
+        [SerializeField] private float _retreatDistance = 20;
+        [SerializeField] private float _destroyDistance = 30;
         [SerializeField] private float _chargeTime = 3;
         [SerializeField] private float _chargeRotation = 720;
         [SerializeField] private float _attackVelocity = 50;
@@ -65,7 +68,11 @@ namespace Enemies
             _mat.SetFloat(EmissionIntensity, 0);
         }
 
-        private void Start() => StartCoroutine(UpdateRoutine());
+        private void Start()
+        {
+            StartCoroutine(UpdateRoutine());
+            _difficulty = Random.Range(_difficultyRange.x, _difficultyRange.y);
+        }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -80,7 +87,13 @@ namespace Enemies
             {
                 if (PlayerDead()) yield break;
                 
-                if (Vector3.Distance(Player.transform.position, transform.position) <= _attackDistance)
+                var distance = Vector3.Distance(Player.transform.position, transform    .position);
+                if (distance > _destroyDistance)
+                {
+                    Destroy(gameObject);
+                    yield break;
+                }
+                if (distance <= _attackDistance)
                     StartNullRoutine(ref _attackRoutine, AttackRoutine());
                 
                 yield return UpdateInterval;
@@ -91,12 +104,11 @@ namespace Enemies
         private IEnumerator AttackRoutine()
         {
             _isAttacking = true;
-            var difficulty = Random.Range(_difficultyRange.x, _difficultyRange.y);
-            var chargeTime = _chargeTime / difficulty;
-            var chargeRot = _chargeRotation * Misc.RandomInvert * difficulty;
-            var attackVel = _attackVelocity * difficulty;
+            var chargeTime = _chargeTime / _difficulty;
+            var chargeRot = _chargeRotation * Misc.RandomInvert * _difficulty;
+            var attackVel = _attackVelocity * _difficulty;
             var chargeVel = attackVel * ChargeVelMultiplier;
-            var cooldown = _cooldown / difficulty - DimTime;
+            var cooldown = _cooldown / _difficulty - DimTime;
             Vector2 dir;
 
             //Charging
@@ -119,7 +131,7 @@ namespace Enemies
             //Attack
             dir = ((Vector2)(Player.transform.position - transform.position)).normalized;
             _rb.AddForce(attackVel * dir, ForceMode2D.Impulse);
-            AudioManager.PlayAt(_dashSound, transform.position, 1.5f - difficulty * 0.5f);
+            AudioManager.PlayAt(_dashSound, transform.position, 1.5f - _difficulty * 0.5f);
 
             //Dimming lights and emission
             while (lerpPos > 0)
@@ -139,8 +151,14 @@ namespace Enemies
             
             if (PlayerDead()) yield break;
             
-            //Retreat based on distance
-            if (Vector3.Distance(Player.transform.position, transform.position) > _retreatDistance)
+            //Distance checks
+            var distance = Vector3.Distance(Player.transform.position, transform.position);
+            if (distance > _destroyDistance)
+            {
+                Destroy(gameObject);
+                yield break;
+            }
+            if (distance > _retreatDistance)
             {
                 _attackRoutine = null;
                 yield break;
@@ -152,6 +170,7 @@ namespace Enemies
 
         private void Die()
         {
+            Player.Score += (int)(25 * _difficulty);
             Destroy(gameObject);
         }
 
@@ -168,6 +187,12 @@ namespace Enemies
             if (Player) return false;
             Die();
             return true;
+        }
+
+        private void OnDestroy()
+        {
+            //TODO: Remove from the enemy list
+            //TODO: Destroy the ui if added
         }
     }
 }

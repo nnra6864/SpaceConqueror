@@ -49,7 +49,10 @@ namespace Player
         
         [SerializeField] private float _energyRefillRate = 0.1f;
         
-        [SerializeField] private float _health = 100;
+        [SerializeField] private float _maxHealth = 100;
+        public float MaxHealth => _maxHealth;
+        
+        private float _health;
         public float Health
         {
             get => _health;
@@ -62,6 +65,20 @@ namespace Player
             }
         }
         public Action<float> OnHealthChanged;
+
+        private int _score;
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                if (_score == value) return;
+                _score = value;
+                OnScoreChanged?.Invoke(_score);
+            }
+        }
+        public Action<int> OnScoreChanged;
+
 
         private bool _isDashing;
         public bool IsDashing
@@ -84,6 +101,7 @@ namespace Player
         private void Awake()
         {
             GameManager.Player = this;
+            _health = MaxHealth;
             _emissionLightIntensity = _emissionLight.intensity;
             _energy.OnLevelChanged += OnEnergyChanged;
         }
