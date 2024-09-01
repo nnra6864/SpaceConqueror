@@ -1,3 +1,4 @@
+using Enemies;
 using Player;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -66,6 +67,18 @@ namespace Core
                 if (Instance._player == value) return;
                 if (Instance._player != null) Destroy(Instance._player);
                 Instance._player = value;
+            }
+        }
+
+        [SerializeField] private EnemySpawnerScript _enemySpawner;
+        public static EnemySpawnerScript EnemySpawner
+        {
+            get => Instance._enemySpawner ?? (Instance._enemySpawner = FindFirstObjectByType<EnemySpawnerScript>());
+            set
+            {
+                if (Instance._enemySpawner == value) return;
+                if (Instance._enemySpawner != null) Destroy(Instance._player);
+                Instance._enemySpawner = value;
             }
         }
     }

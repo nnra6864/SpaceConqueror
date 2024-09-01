@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
@@ -19,6 +18,7 @@ namespace Enemies
         private static readonly WaitForSeconds UpdateInterval = new(0.1f); //Cached the update interval
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
         private static PlayerScript Player => GameManager.Player;
+        private static EnemySpawnerScript Spawner => GameManager.EnemySpawner;
         private static TimeManager TimeManager => NnManager.TimeManager;
         private static AudioManager AudioManager => NnManager.AudioManager;
 
@@ -70,8 +70,9 @@ namespace Enemies
 
         private void Start()
         {
-            StartCoroutine(UpdateRoutine());
+            Spawner.Enemies.Add(this);
             _difficulty = Random.Range(_difficultyRange.x, _difficultyRange.y);
+            StartCoroutine(UpdateRoutine());
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -191,8 +192,7 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            //TODO: Remove from the enemy list
-            //TODO: Destroy the ui if added
+            Spawner.Enemies.Remove(this);
         }
     }
 }

@@ -57,11 +57,11 @@ namespace Player
         {
             var startVal = int.Parse(_scoreTMP.text);
             float lerpPos = 0;
-            var lerpTime = Mathf.Abs(val - startVal) / 7.5f;
+            var lerpTime = Mathf.Abs(val - startVal) / 10f;
             
             while (lerpPos < 1)
             {
-                var t = Misc.UpdateLerpPos(ref lerpPos, lerpTime, easingType: Easings.Types.ExpoOut);
+                var t = Misc.UpdateLerpPos(ref lerpPos, lerpTime, easingType: Easings.Types.QuartOut);
                 var res = Mathf.LerpUnclamped(startVal, val, t);
                 tmp.text = $"{(int)res}";
                 yield return null;

@@ -300,7 +300,8 @@ MonoBehaviour:
   _difficultyRange: {x: 0.75, y: 1.25}
   _attackDistance: 5
   _retreatDistance: 30
-  _chargeTime: 3
+  _destroyDistance: 50
+  _chargeTime: 2.5
   _chargeRotation: 720
   _attackVelocity: 50
   _cooldown: 5
