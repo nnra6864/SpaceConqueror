@@ -33,6 +33,7 @@ namespace Enemies
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Light2D _emissionLight;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private ParticleSystem _idleParticles;
         [SerializeField] private ParticleSystem _deathParticles;
         [SerializeField] private Sound _dashSound;
         [SerializeField] private Sound _hitSound;
@@ -72,10 +73,23 @@ namespace Enemies
             _mat.SetFloat(EmissionIntensity, 0);
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
             Spawner.Enemies.Add(this);
             _difficulty = Random.Range(_difficultyRange.x, _difficultyRange.y);
+
+            //Spawn animation
+            var startScale = transform.localScale;
+            _rb.angularVelocity = Random.Range(-360, 360);
+            float lerpPos = 0;
+            while (lerpPos < 1)
+            {
+                if (PlayerDead()) yield break;
+                var t = Misc.UpdateLerpPos(ref lerpPos, easingType: Easings.Types.ExpoInOut);
+                transform.localScale = Vector3.LerpUnclamped(Vector3.zero, startScale, t);
+                yield return null;
+            }
+            
             StartCoroutine(UpdateRoutine());
         }
 
@@ -201,11 +215,18 @@ namespace Enemies
 
         private void OnDestroy()
         {
+            Spawner.Enemies.Remove(this);
+            if (Player &&
+                Vector2.Distance(transform.position, Player.transform.position) >= _destroyDistance) return;
+            _idleParticles.transform.SetParent(null);
+            _idleParticles.Stop();
+            Destroy(_idleParticles.gameObject, _idleParticles.main.startLifetime.constantMax + 0.5f);
+
             _deathParticles.transform.SetParent(null);
             _deathParticles.Play();
             Destroy(_deathParticles.gameObject, _deathParticles.main.startLifetime.constantMax + 0.5f);
+
             AudioManager.PlayAt(_deathSound, transform.position);
-            Spawner.Enemies.Remove(this);
         }
     }
 }

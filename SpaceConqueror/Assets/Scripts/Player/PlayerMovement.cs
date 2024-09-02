@@ -1,3 +1,4 @@
+using System;
 using Core;
 using NnUtils.Scripts;
 using UnityEngine;
@@ -8,7 +9,18 @@ namespace Player
     {
         private static PlayerScript Player => GameManager.Player;
         [SerializeField] private float _speed = 30;
-        [SerializeField] private float _maxSpeed = 6;
+        [SerializeField] private float _maxSpeed = 50;
+        public float Speed
+        {
+            get => _speed;
+            set
+            {
+                if (Mathf.Approximately(_speed, value)) return;
+                _speed = Mathf.Clamp(_speed, 0, _maxSpeed);
+                OnSpeedChanged?.Invoke(_speed);
+            }
+        }
+        public Action<float> OnSpeedChanged;
 
         private void Update()
         {

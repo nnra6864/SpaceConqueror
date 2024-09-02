@@ -15,8 +15,20 @@ namespace Player
 
         [SerializeField] private Sound _dashSound;
         [SerializeField] private float _dashDuration = 1;
+        
         [SerializeField] private float _dashCooldown = 10;
         [SerializeField] private float _minDashCooldown = 3;
+        public float DashCooldown
+        {
+            get => _dashCooldown;
+            set
+            {
+                if (Mathf.Approximately(_dashCooldown, value)) return;
+                _dashCooldown = Mathf.Clamp(value, _minDashCooldown, 10);
+                OnCooldownChanged?.Invoke(_dashCooldown);
+            }
+        }
+        public Action<float> OnCooldownChanged;
 
         [SerializeField] private float _dashForce = 25;
         [SerializeField] private float _maxDashForce = 100;
@@ -30,7 +42,6 @@ namespace Player
                 OnForceChanged?.Invoke(_dashForce);
             }
         }
-
         public Action<float> OnForceChanged;
 
         [SerializeField] private int _dashDamage;
@@ -45,7 +56,6 @@ namespace Player
                 OnDamageChanged?.Invoke(_dashDamage);
             }
         }
-
         public Action<int> OnDamageChanged;
 
 

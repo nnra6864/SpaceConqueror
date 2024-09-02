@@ -46,9 +46,6 @@ namespace Player
 
         
         [Header("Values")]
-        
-        [SerializeField] private float _energyRefillRate = 0.1f;
-        
         [SerializeField] private float _maxHealth = 100;
         public float MaxHealth => _maxHealth;
         
@@ -59,7 +56,7 @@ namespace Player
             set
             {
                 if (Mathf.Approximately(_health, value)) return;
-                _health = value < 0 ? 0 : value;
+                _health = Mathf.Clamp(value, 0, _maxHealth);
                 if (Health <= 0) Die();
                 OnHealthChanged?.Invoke(Health);
             }

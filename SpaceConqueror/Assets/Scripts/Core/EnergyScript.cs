@@ -9,8 +9,19 @@ namespace Core
     {
         [SerializeField] private Image _fillImage;
         [SerializeField] private float _refillRate = 0.05f;
-        public float RefillRate => _refillRate;
-        
+        [SerializeField] private float _maxRefillRate = 0.25f;
+        public float RefillRate
+        {
+            get => _refillRate;
+            set
+            {
+                if (Mathf.Approximately(_refillRate, value)) return;
+                _refillRate = Mathf.Clamp(value, 0.05f, _maxRefillRate);
+                OnRefillRateChanged?.Invoke(_refillRate);
+            }
+        }
+        public Action<float> OnRefillRateChanged;
+
         private float _level = 1;
         public float Level
         {

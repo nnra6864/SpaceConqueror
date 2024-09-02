@@ -1,3 +1,4 @@
+using System;
 using Core;
 using NnUtils.Scripts;
 using NnUtils.Scripts.Audio;
@@ -12,6 +13,8 @@ namespace DamageDealer
         
         [Header("Projectile")]
         [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private ParticleSystem _idleParticles;
+        [SerializeField] private ParticleSystem _destroyParticles;
         [SerializeField] private Sound _hitSound;
         [SerializeField] private float _projectileSpeed = 25f;
         [SerializeField] private float _lifetime = 5;
@@ -39,9 +42,20 @@ namespace DamageDealer
             Die();
         }
 
-        private  void Move()
+        private void Move()
         {
             _rb.linearVelocity = transform.up * _projectileSpeed;
+        }
+
+        private void OnDestroy()
+        {
+            _idleParticles.Stop();
+            _idleParticles.transform.SetParent(null);
+            Destroy(_idleParticles, _idleParticles.main.startLifetime.constantMax + 1);
+            
+            _destroyParticles.transform.SetParent(null);
+            _destroyParticles.Play();
+            Destroy(_destroyParticles, _destroyParticles.main.startLifetime.constantMax + 1);
         }
     }
 }
