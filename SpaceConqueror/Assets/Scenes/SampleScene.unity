@@ -977,6 +977,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 8716701710976327801, guid: e323875261ffaed6c97633bade6acf13, type: 3}
   _hud: {fileID: 639330870}
+  _health: {fileID: 1276650866}
+  _energy: {fileID: 1154654765}
+  _score: {fileID: 1763783235}
 --- !u!1 &876615887
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,7 +1461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1154654766
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1495,7 +1498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1276650867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2195,7 +2198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1763783236
 RectTransform:
   m_ObjectHideFlags: 0
