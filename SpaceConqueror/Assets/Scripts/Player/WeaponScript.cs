@@ -29,6 +29,7 @@ namespace Player
 
         private void Update()
         {
+            if (TimeManager.IsPaused) return;
             if (Input.GetKeyDown(KeyCode.Mouse0)) Attack();
         }
 

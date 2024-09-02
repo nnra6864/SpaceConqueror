@@ -16,8 +16,16 @@ namespace Player
         
         private void Awake()
         {
+            GameManager.OnSpawned += SubToPlayerEvents;
+        }
+
+        private void SubToPlayerEvents()
+        {
+            SetHealth(Player.Health);
             Player.OnHealthChanged += SetHealth;
+            SetScore(Player.Score);
             Player.OnScoreChanged += SetScore;
+            SetEnergy(Player.Energy.Level);
             Player.Energy.OnLevelChanged += SetEnergy;
         }
 

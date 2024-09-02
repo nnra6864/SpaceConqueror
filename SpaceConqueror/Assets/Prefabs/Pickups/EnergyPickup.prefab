@@ -5012,9 +5012,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: -2318118906146679864}
   _col: {fileID: 3653021310173950105}
-  _idleParticles: {fileID: 8979920055513291066}
   _collectParticles: {fileID: 8652095847034156686}
-  _collectSound: {fileID: 11400000, guid: f7fcb853eab404de485b4eade1fdcefa, type: 2}
+  _collectSound: {fileID: 11400000, guid: 79cd22fcb4c77d84a9e32741cfe0a1d1, type: 2}
   _lifetime: 5
   _refillRange: {x: 0.1, y: 0.25}
   _refillSpeedRange: {x: 0.025, y: 0.25}

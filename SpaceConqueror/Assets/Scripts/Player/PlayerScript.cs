@@ -1,5 +1,6 @@
 using System;
 using Core;
+using Menu;
 using NnUtils.Scripts;
 using NnUtils.Scripts.Audio;
 using UnityEngine;
@@ -39,6 +40,9 @@ namespace Player
         [SerializeField] private SpriteRenderer _spriteRenderer;
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
 
+        [SerializeField] private ParticleSystem _idleParticles;
+        [SerializeField] private ParticleSystem _deathParticles;
+        
         [SerializeField] private Light2D _emissionLight;
         public Light2D EmissionLight => _emissionLight;
         private float _emissionLightIntensity;
@@ -98,9 +102,11 @@ namespace Player
         private void Awake()
         {
             GameManager.Player = this;
-            _health = MaxHealth;
+            GameManager.CineCam.Follow = transform;
+            Health = MaxHealth;
             _emissionLightIntensity = _emissionLight.intensity;
             _energy.OnLevelChanged += OnEnergyChanged;
+            GameManager.OnSpawned?.Invoke();
         }
 
         private void OnEnergyChanged(float energy)
@@ -119,6 +125,16 @@ namespace Player
 
         private void Die()
         {
+            _idleParticles.transform.SetParent(null);
+            _idleParticles.Stop();
+            Destroy(_idleParticles.gameObject, _idleParticles.main.startLifetime.constantMax + 0.5f);
+
+            _deathParticles.transform.SetParent(null);
+            _deathParticles.Play();
+            Destroy(_deathParticles.gameObject, _deathParticles.main.startLifetime.constantMax + 0.5f);
+            
+            GameManager.Menu.gameObject.SetActive(true);
+            GameManager.OnDied?.Invoke();
             Destroy(gameObject);
         }
     }

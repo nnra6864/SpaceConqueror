@@ -49,8 +49,8 @@ namespace DamageDealer
 
         private void OnDestroy()
         {
-            _idleParticles.Stop();
             _idleParticles.transform.SetParent(null);
+            _idleParticles.Stop();
             Destroy(_idleParticles, _idleParticles.main.startLifetime.constantMax + 1);
             
             _destroyParticles.transform.SetParent(null);

@@ -215,7 +215,7 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            Spawner.Enemies.Remove(this);
+            Spawner?.Enemies.Remove(this);
             if (Player &&
                 Vector2.Distance(transform.position, Player.transform.position) >= _destroyDistance) return;
             _idleParticles.transform.SetParent(null);
