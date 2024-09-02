@@ -20,7 +20,7 @@ MonoBehaviour:
   GetPitchOnPlay: 0
   Unscaled: 0
   Loop: 0
-  SpatialBlend: 0.6
+  SpatialBlend: 1
   FadeIn: 0
   FadeInTime: 1
   FadeInEasing: 1

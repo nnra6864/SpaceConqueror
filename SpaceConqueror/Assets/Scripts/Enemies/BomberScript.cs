@@ -2,6 +2,7 @@ using System.Collections;
 using Core;
 using NnUtils.Scripts;
 using NnUtils.Scripts.Audio;
+using Pickups;
 using Player;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -19,6 +20,7 @@ namespace Enemies
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
         private static PlayerScript Player => GameManager.Player;
         private static EnemySpawnerScript Spawner => GameManager.EnemySpawner;
+        private static PickupLootTableScript PickupLT => GameManager.PickupLT;
         private static TimeManager TimeManager => NnManager.TimeManager;
         private static AudioManager AudioManager => NnManager.AudioManager;
 
@@ -31,8 +33,10 @@ namespace Enemies
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Light2D _emissionLight;
         [SerializeField] private SpriteRenderer _spriteRenderer;
+        [SerializeField] private ParticleSystem _deathParticles;
         [SerializeField] private Sound _dashSound;
         [SerializeField] private Sound _hitSound;
+        [SerializeField] private Sound _deathSound;
 
         [Header("Values")]
         [SerializeField] private Vector2 _difficultyRange = new(0.75f, 1.25f);
@@ -172,6 +176,11 @@ namespace Enemies
         private void Die()
         {
             Player.Score += (int)(25 * _difficulty);
+            
+            var drops = PickupLT.GetPickups();
+            foreach (var drop in drops)
+                Instantiate(drop, transform.position, Quaternion.identity);
+            
             Destroy(gameObject);
         }
 
@@ -186,12 +195,16 @@ namespace Enemies
         private bool PlayerDead()
         {
             if (Player) return false;
-            Die();
+            Destroy(gameObject);
             return true;
         }
 
         private void OnDestroy()
         {
+            _deathParticles.transform.SetParent(null);
+            _deathParticles.Play();
+            Destroy(_deathParticles.gameObject, _deathParticles.main.startLifetime.constantMax + 0.5f);
+            AudioManager.PlayAt(_deathSound, transform.position);
             Spawner.Enemies.Remove(this);
         }
     }

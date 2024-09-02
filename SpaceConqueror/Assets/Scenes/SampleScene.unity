@@ -855,6 +855,7 @@ GameObject:
   - component: {fileID: 709534584}
   - component: {fileID: 709534585}
   - component: {fileID: 709534586}
+  - component: {fileID: 709534587}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -892,6 +893,8 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _cineCam: {fileID: 0}
   _player: {fileID: 0}
+  _enemySpawner: {fileID: 0}
+  _pickupLT: {fileID: 0}
 --- !u!114 &709534586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,6 +908,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPaused: 0
+--- !u!114 &709534587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709534583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c3782f78ca334a08bfe32ad7d3547e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pickupItems:
+  - Pickup: {fileID: 5311785571340616489, guid: 790e146d0a64a6c4e8bcfd2b8778f7f6, type: 3}
+    Chance: 30
+  - Pickup: {fileID: 3641476860969782672, guid: 3c744b10c42dbf62693f177acbd357d3, type: 3}
+    Chance: 30
 --- !u!1 &876615887
 GameObject:
   m_ObjectHideFlags: 0

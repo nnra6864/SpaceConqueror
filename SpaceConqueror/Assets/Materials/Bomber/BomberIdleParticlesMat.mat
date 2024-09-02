@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnergyMat
-  m_Shader: {fileID: -6465566751694194690, guid: 02944c6e1cc246f5988b91a65e5aa397, type: 3}
+  m_Name: BomberIdleParticlesMat
+  m_Shader: {fileID: -6465566751694194690, guid: 35af3babb6826f09ca54e256e7ce514c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -53,7 +53,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emission:
-        m_Texture: {fileID: 2800000, guid: 469d9bb456c07b47cb89d355c91b82f1, type: 3}
+        m_Texture: {fileID: 2800000, guid: eaa143cd1632078f9b33b5c315f3d1e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 469d9bb456c07b47cb89d355c91b82f1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -77,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 655a082fc4bf29b8cb5d3be6c0883390, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -125,8 +125,9 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _EmissionIntensity: 1
-    - _EmissionStrength: 1
+    - _EmissionDensity: 1
+    - _EmissionScale: 10
+    - _EmissionSpeed: 1
     - _EnableExternalAlpha: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
@@ -134,7 +135,7 @@ Material:
     - _GlossyReflections: 0
     - _LightInfluenceStrength: 0.25
     - _Metallic: 0
-    - _NormalStrength: 0
+    - _NormalStrength: 10
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -151,8 +152,10 @@ Material:
     - _BaseCol: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionCol: {r: 0, g: 1.3933413, b: 2.9960785, a: 1}
+    - _EmissionCol: {r: 0.8, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionMinMax: {r: 0, g: 1, b: 0, a: 0}
+    - _EmissionSmoothstep: {r: 0, g: 1, b: 0, a: 0}
     - _LightInfluenceMinMax: {r: 1, g: 1, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

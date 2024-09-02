@@ -1,4 +1,5 @@
 using Enemies;
+using Pickups;
 using Player;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -81,5 +82,9 @@ namespace Core
                 Instance._enemySpawner = value;
             }
         }
+
+        [SerializeField] private PickupLootTableScript _pickupLT;
+        public static PickupLootTableScript PickupLT =>
+            Instance._pickupLT ?? (Instance._pickupLT = Instance.GetComponent<PickupLootTableScript>());
     }
 }

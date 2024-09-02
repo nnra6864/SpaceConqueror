@@ -23,8 +23,14 @@ namespace Player
         public float DashForce
         {
             get => _dashForce;
-            set => _dashForce = Mathf.Clamp(value, 0, _maxDashForce);
+            set
+            {
+                if (Mathf.Approximately(_dashForce, value)) return;
+                _dashForce = Mathf.Clamp(value, 0, _maxDashForce);
+                OnForceChanged?.Invoke(_dashForce);
+            }
         }
+
         public Action<float> OnForceChanged;
 
         [SerializeField] private int _dashDamage;
@@ -32,8 +38,14 @@ namespace Player
         public int DashDamage
         {
             get => _dashDamage;
-            set => _dashDamage = (int)Mathf.Clamp(value, 0, _maxDashDamage);
+            set
+            {
+                if (Mathf.Approximately(_dashForce, value)) return;
+                _dashDamage = (int)Mathf.Clamp(value, 0, _maxDashDamage);
+                OnDamageChanged?.Invoke(_dashDamage);
+            }
         }
+
         public Action<int> OnDamageChanged;
 
 
