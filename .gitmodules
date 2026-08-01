@@ -2,3 +2,15 @@
 	path = SpaceConqueror/Assets/NnUtils
 	url = https://www.github.com/nnra6864/NnUtils.git
 	branch = SpaceConqueror
+[submodule "Modules/NnUnityUtils"]
+	path = Modules/NnUnityUtils
+	url = ../NnUnityUtils
+[submodule "Modules/NnUnityTextUtils"]
+	path = Modules/NnUnityTextUtils
+	url = ../NnUnityTextUtils
+[submodule "Modules/NnUnityEasings"]
+	path = Modules/NnUnityEasings
+	url = ../NnUnityEasings
+[submodule "Modules/UnitySingleton"]
+	path = Modules/UnitySingleton
+	url = ../../nnra6864-mirrors/UnitySingleton

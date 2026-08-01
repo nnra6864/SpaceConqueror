@@ -1,11 +1,10 @@
 using Core;
-using NnUtils.Scripts;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(AudioListener))]
-    public class PlayerListener : NnBehaviour
+    public class PlayerListener : MonoBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
 

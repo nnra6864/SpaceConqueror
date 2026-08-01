@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
+using NnUnityEasings;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerDash : NnBehaviour
+    public class PlayerDash : MonoBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
         private static TimeManager TimeManager => NnManager.TimeManager;
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
 
         [SerializeField] private Sound _dashSound;
         [SerializeField] private float _dashDuration = 1;
@@ -58,6 +58,10 @@ namespace Player
         }
         public Action<int> OnDamageChanged;
 
+        private void Awake()
+        {
+            AudioManager = AudioManager.Instance;
+        }
 
         private void Update()
         {
@@ -68,7 +72,7 @@ namespace Player
         private void Dash()
         {
             if (Player.Energy.Level < 0.25f) return;
-            StartNullRoutine(ref _dashRoutine, DashRoutine());
+            this.StartNullRoutine(ref _dashRoutine, DashRoutine());
         }
 
         private Coroutine _dashRoutine;
@@ -78,13 +82,14 @@ namespace Player
             Player.IsDashing = true;
             Player.Collider.isTrigger = true;
             Player.Rigidbody.AddForce(_dashForce * energy * transform.up, ForceMode2D.Impulse);
-            AudioManager.Play("PlayerDash", 1.25f - energy * 0.5f);
+            // TODO: Dynamically calculate pitch based on original code
+            AudioManager.Play(_dashSound);
             Player.Energy.Level /= 2;
             
             TimeManager.ChangeTimeScale(
                 new[] { 2f, 1f },
                 new[] { 0f, 1f },
-                new[] { Easings.Types.None, Easings.Types.CubicOut }
+                new[] { Easing.Linear, Easing.CubicOut }
                 );
             
             yield return new WaitForSecondsWhileNot(_dashDuration * energy, () => TimeManager.IsPaused, true);

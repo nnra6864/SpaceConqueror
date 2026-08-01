@@ -2,17 +2,16 @@ using System;
 using Core;
 using Menu;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(EnergyScript))]
-    public class PlayerScript : NnBehaviour, IHittable
+    public class PlayerScript : MonoBehaviour , IHittable
     {
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
         
         [Header("Components")]
         
@@ -45,6 +44,9 @@ namespace Player
         
         [SerializeField] private Light2D _emissionLight;
         public Light2D EmissionLight => _emissionLight;
+
+        [SerializeField] private Sound _hitSound;
+
         private float _emissionLightIntensity;
         private Renderer _renderer;
 
@@ -103,6 +105,7 @@ namespace Player
         {
             GameManager.Player = this;
             GameManager.CineCam.Follow = transform;
+            AudioManager = AudioManager.Instance;
             Health = MaxHealth;
             _emissionLightIntensity = _emissionLight.intensity;
             _energy.OnLevelChanged += OnEnergyChanged;
@@ -118,7 +121,7 @@ namespace Player
         public void GetHit(float damage)
         {
             Health -= damage;
-            AudioManager.Play("PlayerHit");
+            AudioManager.Play(_hitSound);
         }
 
         public float GetHealth() => Health;

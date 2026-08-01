@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerAim : NnBehaviour
+    public class PlayerAim : MonoBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
         private static TimeManager TimeManager => NnManager.TimeManager;

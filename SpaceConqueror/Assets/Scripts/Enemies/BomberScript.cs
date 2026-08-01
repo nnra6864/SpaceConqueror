@@ -1,7 +1,7 @@
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
+using NnUnityEasings;
 using Pickups;
 using Player;
 using UnityEngine;
@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 namespace Enemies
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class BomberScript : NnBehaviour, IHittable
+    public class BomberScript : MonoBehaviour, IHittable
     {
         private const float ChargeVelMultiplier = 0.025f; //Used to multiply the velocity when charging
         private const float DimTime = 2; //Time in seconds to dim the lights and emission
@@ -22,7 +22,7 @@ namespace Enemies
         private static EnemySpawnerScript Spawner => GameManager.EnemySpawner;
         private static PickupLootTableScript PickupLT => GameManager.PickupLT;
         private static TimeManager TimeManager => NnManager.TimeManager;
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
 
         private float _difficulty;
         private float _baseLightIntensity;
@@ -67,6 +67,7 @@ namespace Enemies
 
         private void Awake()
         {
+            AudioManager = AudioManager.Instance;
             _baseLightIntensity = _emissionLight.intensity;
             _emissionLight.intensity = 0;
             _mat = _spriteRenderer.material;
@@ -85,7 +86,7 @@ namespace Enemies
             while (lerpPos < 1)
             {
                 if (PlayerDead()) yield break;
-                var t = Misc.UpdateLerpPos(ref lerpPos, easingType: Easings.Types.ExpoInOut);
+                var t = Misc.Tween(ref lerpPos, 1, Easing.ExpoInOut);
                 transform.localScale = Vector3.LerpUnclamped(Vector3.zero, startScale, t);
                 yield return null;
             }
@@ -113,7 +114,7 @@ namespace Enemies
                     yield break;
                 }
                 if (distance <= _attackDistance)
-                    StartNullRoutine(ref _attackRoutine, AttackRoutine());
+                    this.StartNullRoutine(ref _attackRoutine, AttackRoutine());
                 
                 yield return UpdateInterval;
             }
@@ -139,7 +140,7 @@ namespace Enemies
                 _rb.linearVelocity += chargeVel * Time.deltaTime * dir;
                 _rb.angularVelocity += chargeRot * Time.deltaTime;
                 
-                var t = Misc.UpdateLerpPos(ref lerpPos, chargeTime, easingType: Easings.Types.CubicIn);
+                var t = Misc.Tween(ref lerpPos, chargeTime, Easing.CubicIn);
                 _emissionLight.intensity = Mathf.LerpUnclamped(0, _baseLightIntensity, t);
                 _mat.SetFloat(EmissionIntensity, t);
                 yield return null;
@@ -150,12 +151,13 @@ namespace Enemies
             //Attack
             dir = ((Vector2)(Player.transform.position - transform.position)).normalized;
             _rb.AddForce(attackVel * dir, ForceMode2D.Impulse);
-            AudioManager.PlayAt(_dashSound, transform.position, 1.5f - _difficulty * 0.5f);
+            // TODO:Dynamically calculate pitch based on difficulty (reference original code)
+            AudioManager.PlayAt(_dashSound, transform.position);
 
             //Dimming lights and emission
             while (lerpPos > 0)
             {
-                var t = Misc.ReverseLerpPos(ref lerpPos, DimTime, easingType: Easings.Types.ExpoOut);
+                var t = Misc.ReverseTween(ref lerpPos, DimTime, Easing.ExpoOut);
                 _emissionLight.intensity = Mathf.LerpUnclamped(0, _baseLightIntensity, t);
                 _mat.SetFloat(EmissionIntensity, t);
                 yield return null;
@@ -184,7 +186,7 @@ namespace Enemies
             }
             
             //Start attacking again
-            RestartRoutine(ref _attackRoutine, AttackRoutine());
+            this.RestartRoutine(ref _attackRoutine, AttackRoutine());
         }
 
         private void Die()

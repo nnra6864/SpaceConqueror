@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Enemies
 {
-    public class EnemySpawnerScript : NnBehaviour
+    public class EnemySpawnerScript : MonoBehaviour
     {
         private static readonly WaitForSeconds UpdateInterval = new(0.1f); //Cached the update interval
         private static PlayerScript Player => GameManager.Player;

@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "com.nnra6864.nn-unity-easings": "file:../../Modules/NnUnityEasings",
+    "com.nnra6864.nn-unity-utils": "file:../../Modules/NnUnityUtils",
+    "com.unitycommunity.unitysingleton": "file:../../Modules/UnitySingleton",
     "com.unity.cinemachine": "6.6.0",
     "com.unity.collab-proxy": "2.12.4",
     "com.unity.feature.2d": "2.0.2",
@@ -14,6 +17,7 @@
     "com.unity.toolchain.linux-x86_64-linux": "1.1.0",
     "com.unity.ugui": "2.6.0",
     "com.unity.visualscripting": "1.9.11",
+    "com.walcht.ide.neovim": "https://github.com/walcht/com.walcht.ide.neovim.git",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",

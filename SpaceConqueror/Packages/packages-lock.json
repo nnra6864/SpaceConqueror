@@ -1,5 +1,17 @@
 {
   "dependencies": {
+    "com.nnra6864.nn-unity-easings": {
+      "version": "file:../../Modules/NnUnityEasings",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.nnra6864.nn-unity-utils": {
+      "version": "file:../../Modules/NnUnityUtils",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "16.0.0",
       "depth": 1,
@@ -358,6 +370,19 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.unitycommunity.unitysingleton": {
+      "version": "file:../../Modules/UnitySingleton",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
+    "com.walcht.ide.neovim": {
+      "version": "https://github.com/walcht/com.walcht.ide.neovim.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "54fb26c29f5fc35cab1cb5f7be49e326813b251e"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

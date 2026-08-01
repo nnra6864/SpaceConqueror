@@ -9,21 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8b6169e8c40e7a3a40cb678bd6a35, type: 3}
-  m_Name: BomberDash
+  m_Script: {fileID: 11500000, guid: c264d57fb64f85de2a49e41f0d45da25, type: 3}
+  m_Name: Pickup
   m_EditorClassIdentifier: 
   Group: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
-  Name: BomberDash
-  Clip: {fileID: 8300000, guid: d5966aab63276fe58bc79d02e36bd90f, type: 3}
+  Name: Pickup
+  Clip: {fileID: 8300000, guid: 5aa88c1511ab86e24bf7031e39021605, type: 3}
   Volume: 1
-  PitchRange: {x: 1, y: 1}
-  GetPitchOnPlay: 0
+  PitchRange: {x: 0.8, y: 1.2}
+  GetPitchOnPlay: 1
   Unscaled: 0
   Loop: 0
-  SpatialBlend: 0.6
-  FadeIn: 0
+  SpatialBlend: 0
   FadeInTime: 1
   FadeInEasing: 1
-  FadeOut: 0
   FadeOutTime: 1
   FadeOutEasing: 2

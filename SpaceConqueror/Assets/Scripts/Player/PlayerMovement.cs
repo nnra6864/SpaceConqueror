@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : NnBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         private static PlayerScript Player => GameManager.Player;
         [SerializeField] private float _speed = 30;

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Core
 {
-    public class EnergyScript : NnBehaviour
+    public class EnergyScript : MonoBehaviour
     {
         [SerializeField] private Image _fillImage;
         [SerializeField] private float _refillRate = 0.05f;

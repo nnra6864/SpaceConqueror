@@ -1,7 +1,6 @@
 using System;
 using Core;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace DamageDealer
@@ -9,7 +8,7 @@ namespace DamageDealer
     [RequireComponent(typeof(Rigidbody2D))]
     public class ProjectileScript : Ammo
     {
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
         
         [Header("Projectile")]
         [SerializeField] private Rigidbody2D _rb;
@@ -22,6 +21,11 @@ namespace DamageDealer
         private void Reset()
         {
             _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Awake()
+        {
+            AudioManager = AudioManager.Instance;
         }
 
         private void Start()

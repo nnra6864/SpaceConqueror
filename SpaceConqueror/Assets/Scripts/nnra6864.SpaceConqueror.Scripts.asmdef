@@ -1,0 +1,21 @@
+{
+    "name": "nnra6864.SpaceConqueror.Scripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1de1b8f1853e39160a3b50bc3b57264b",
+        "GUID:6d864d6ab97024c038bbf3b3f6a0e062",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:516a5277b8c3b4f4c8cc86b77b1591ff",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:de184cc3ec226704b92a2445e8648cf3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

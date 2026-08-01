@@ -1,16 +1,16 @@
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
+using NnUnityEasings;
 using DamageDealer;
-using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace Player
 {
-    public class WeaponScript : NnBehaviour
+    public class WeaponScript : MonoBehaviour
     {
         private static TimeManager TimeManager => NnManager.TimeManager;
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
         private static PlayerScript Player => GameManager.Player;
         
         [SerializeField] private Ammo _ammo;
@@ -27,6 +27,11 @@ namespace Player
         [SerializeField] private float _cooldown = 1;
         [SerializeField] private float _knockback = 5;
 
+        private void Awake()
+        {
+            AudioManager = AudioManager.Instance;
+        }
+
         private void Update()
         {
             if (TimeManager.IsPaused) return;
@@ -36,7 +41,7 @@ namespace Player
         private void Attack()
         {
             if (Player.Energy.Level < Ammo.Energy) return;
-            StartNullRoutine(ref _attackRoutine, AttackRoutine());
+            this.StartNullRoutine(ref _attackRoutine, AttackRoutine());
         }
         private Coroutine _attackRoutine;
         private IEnumerator AttackRoutine()
@@ -48,9 +53,9 @@ namespace Player
             TimeManager.ChangeTimeScale(
                 new[] { 2f, 1f },
                 new[] { 0f, 1f },
-                new[] { Easings.Types.None, Easings.Types.CubicOut }
+                new[] { Easing.Linear, Easing.CubicOut }
                 );
-            AudioManager.Play(_ammo.DischargeSound.Name);
+            AudioManager.Play(_ammo.DischargeSound);
             yield return new WaitForSecondsWhileNot(_cooldown, () => TimeManager.IsPaused, true);
             _attackRoutine = null;
             yield return null;

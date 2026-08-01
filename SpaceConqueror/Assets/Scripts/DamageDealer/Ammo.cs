@@ -1,11 +1,10 @@
 using Core;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
 using UnityEngine;
 
 namespace DamageDealer
 {
-    public class Ammo : NnBehaviour, IHittable
+    public class Ammo : MonoBehaviour, IHittable
     {
         [Header("Ammo")]
         [SerializeField] private Sound _dischargeSound;

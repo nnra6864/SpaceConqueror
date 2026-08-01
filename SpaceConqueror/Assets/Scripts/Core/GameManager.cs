@@ -5,45 +5,12 @@ using Pickups;
 using Player;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityCommunity.UnitySingleton;
 
 namespace Core
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoSingleton<GameManager>
     {
-        private static GameManager _instance;
-        public static GameManager Instance
-        {
-            get
-            {
-                if (_instance != null) return _instance;
-                
-                _instance = FindFirstObjectByType<GameManager>();
-                if (_instance != null)
-                {
-                    DontDestroyOnLoad(_instance);
-                    return _instance;
-                }
-                
-                var go = new GameObject("GameManager");
-                DontDestroyOnLoad(go);
-                _instance = go.AddComponent<GameManager>();
-                return _instance;
-            }
-        }
-        
-        private void Awake()
-        {
-            if (_instance == null)
-            {
-                _instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-        
         private static GameObject GameObject => Instance.gameObject;
         public static Action OnSpawned;
         public static Action OnDied;
@@ -54,7 +21,7 @@ namespace Core
         [SerializeField] private CinemachineCamera _cineCam;
         public static CinemachineCamera CineCam
         {
-            get => Instance._cineCam ?? (Instance._cineCam = FindFirstObjectByType<CinemachineCamera>());
+            get => Instance._cineCam ?? (Instance._cineCam = FindAnyObjectByType<CinemachineCamera>());
             set
             {
                 if (Instance._cineCam == value) return;
@@ -66,7 +33,7 @@ namespace Core
         [SerializeField] private PlayerScript _player;
         public static PlayerScript Player
         {
-            get => Instance._player ?? (Instance._player = FindFirstObjectByType<PlayerScript>());
+            get => Instance._player ?? (Instance._player = FindAnyObjectByType<PlayerScript>());
             set
             {
                 if (Instance._player == value) return;
@@ -78,7 +45,7 @@ namespace Core
         [SerializeField] private EnemySpawnerScript _enemySpawner;
         public static EnemySpawnerScript EnemySpawner
         {
-            get => Instance._enemySpawner ?? (Instance._enemySpawner = FindFirstObjectByType<EnemySpawnerScript>());
+            get => Instance._enemySpawner ?? (Instance._enemySpawner = FindAnyObjectByType<EnemySpawnerScript>());
             set
             {
                 if (Instance._enemySpawner == value) return;

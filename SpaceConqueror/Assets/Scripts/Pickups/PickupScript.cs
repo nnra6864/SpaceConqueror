@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
-using NnUtils.Scripts.Audio;
+using NnUnityEasings;
 using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,10 +10,10 @@ using Random = UnityEngine.Random;
 namespace Pickups
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PickupScript : NnBehaviour
+    public class PickupScript : MonoBehaviour
     {
         protected static PlayerScript Player => GameManager.Player;
-        private static AudioManager AudioManager => NnManager.AudioManager;
+        private static AudioManager AudioManager;
 
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Collider2D _col;
@@ -25,6 +25,11 @@ namespace Pickups
         {
             _rb = GetComponent<Rigidbody2D>();
             _col = GetComponent<Collider2D>();
+        }
+
+        private void Awake()
+        {
+            AudioManager = AudioManager.Instance;
         }
 
         private IEnumerator Start()
@@ -41,7 +46,7 @@ namespace Pickups
             float lerpPos = 0;
             while (lerpPos < 1)
             {
-                var t = Misc.UpdateLerpPos(ref lerpPos, easingType: Easings.Types.ExpoOut);
+                var t = Misc.Tween(ref lerpPos, 1, Easing.ExpoOut);
                 transform.localScale = Vector3.LerpUnclamped(Vector3.zero, startScale, t);
                 yield return null;
             }
@@ -52,7 +57,7 @@ namespace Pickups
             lerpPos = 0;
             while (lerpPos < 1)
             {
-                var t = Misc.UpdateLerpPos(ref lerpPos, _lifetime, easingType: Easings.Types.CubicIn);
+                var t = Misc.Tween(ref lerpPos, _lifetime, Easing.CubicIn);
                 transform.localScale = Vector3.LerpUnclamped(startScale, Vector3.zero, t);
                 yield return null;
             }

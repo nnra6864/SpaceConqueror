@@ -1,12 +1,13 @@
 using System.Collections;
 using Core;
 using NnUtils.Scripts;
+using NnUnityEasings;
 using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerZoom : NnBehaviour
+    public class PlayerZoom : MonoBehaviour
     {
         private static CinemachineCamera CineCam => GameManager.CineCam;
         
@@ -22,7 +23,7 @@ namespace Player
             {
                 if (_zoom == value) return;
                 _zoom = Mathf.Clamp(value, _zoomMinMax.x, _zoomMinMax.y); 
-                RestartRoutine(ref _zoomRoutine, ZoomRoutine());
+                this.RestartRoutine(ref _zoomRoutine, ZoomRoutine());
             }
         }
 
@@ -37,7 +38,7 @@ namespace Player
 
             while (lerpPos < 1)
             {
-                var t = Misc.UpdateLerpPos(ref lerpPos, _zoomTime, false, Easings.Types.ExpoOut);
+                var t = Misc.Tween(ref lerpPos, _zoomTime, Easing.ExpoOut, unscaled: false);
                 CineCam.Lens.OrthographicSize = Mathf.LerpUnclamped(startZoom, Zoom, t);
                 yield return null;
             }
