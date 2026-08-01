@@ -11,8 +11,10 @@ namespace Player
     public class PlayerScript : MonoBehaviour , IHittable
     {
         private static readonly int EmissionIntensity = Shader.PropertyToID("_EmissionIntensity");
-        private static AudioManager AudioManager;
-        
+        private AudioManager _audioManager;
+
+        private bool _init;
+
         [Header("Components")]
         
         [SerializeField] private Rigidbody2D _rigidbody;
@@ -63,8 +65,8 @@ namespace Player
             {
                 if (Mathf.Approximately(_health, value)) return;
                 _health = Mathf.Clamp(value, 0, _maxHealth);
-                if (Health <= 0) Die();
                 OnHealthChanged?.Invoke(Health);
+                if (Health <= 0) Die();
             }
         }
         public Action<float> OnHealthChanged;
@@ -101,15 +103,31 @@ namespace Player
             _dash = GetComponent<PlayerDash>();
         }
 
-        private void Awake()
+        private void OnEnable() => Init();
+
+        private void Awake() => Init();
+
+        private void OnDisable() => Deinit();
+
+        private void OnDestroy() => Deinit();
+
+        private void Init()
         {
-            GameManager.Player = this;
-            GameManager.CineCam.Follow = transform;
-            AudioManager = AudioManager.Instance;
+            if (_init) return;
+            _audioManager = AudioManager.Instance;
             Health = MaxHealth;
             _emissionLightIntensity = _emissionLight.intensity;
             _energy.OnLevelChanged += OnEnergyChanged;
-            GameManager.OnSpawned?.Invoke();
+            GameManager.RegisterPlayer(this);
+            _init = true;
+        }
+
+        private void Deinit()
+        {
+            if (!_init) return;
+            _energy.OnLevelChanged -= OnEnergyChanged;
+            GameManager.UnregisterPlayer();
+            _init = false;
         }
 
         private void OnEnergyChanged(float energy)
@@ -121,7 +139,7 @@ namespace Player
         public void GetHit(float damage)
         {
             Health -= damage;
-            AudioManager.Play(_hitSound);
+            _audioManager.Play(_hitSound);
         }
 
         public float GetHealth() => Health;
@@ -135,9 +153,9 @@ namespace Player
             _deathParticles.transform.SetParent(null);
             _deathParticles.Play();
             Destroy(_deathParticles.gameObject, _deathParticles.main.startLifetime.constantMax + 0.5f);
-            
-            GameManager.Menu.gameObject.SetActive(true);
-            GameManager.OnDied?.Invoke();
+
+            Deinit();
+            GameManager.Stop();
             Destroy(gameObject);
         }
     }

@@ -11,54 +11,117 @@ namespace Core
 {
     public class GameManager : MonoSingleton<GameManager>
     {
+        protected override void Awake()
+        {
+            base.Awake();
+            _camera = Camera.main;
+            _cineCam = FindAnyObjectByType<CinemachineCamera>(FindObjectsInactive.Include);
+            _enemySpawner = FindAnyObjectByType<EnemySpawnerScript>(FindObjectsInactive.Include);
+            _pickupLT = FindAnyObjectByType<PickupLootTableScript>(FindObjectsInactive.Include);
+            _stats = FindAnyObjectByType<StatsScript>(FindObjectsInactive.Include);
+            _menu = FindAnyObjectByType<MainMenu>(FindObjectsInactive.Include);
+            _menu.Show();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (Playing) Pause();
+                else Resume();
+            }
+        }
+
         private static GameObject GameObject => Instance.gameObject;
-        public static Action OnSpawned;
-        public static Action OnDied;
-        
-        [SerializeField] private Camera _camera;
-        public static Camera Camera => Instance._camera == null ? Instance._camera = Camera.main : Instance._camera;
 
-        [SerializeField] private CinemachineCamera _cineCam;
-        public static CinemachineCamera CineCam
-        {
-            get => Instance._cineCam ?? (Instance._cineCam = FindAnyObjectByType<CinemachineCamera>());
-            set
-            {
-                if (Instance._cineCam == value) return;
-                if (Instance._cineCam != null) Destroy(Instance._cineCam);
-                Instance._cineCam = value;
-            }
-        }
-    
-        [SerializeField] private PlayerScript _player;
-        public static PlayerScript Player
-        {
-            get => Instance._player ?? (Instance._player = FindAnyObjectByType<PlayerScript>());
-            set
-            {
-                if (Instance._player == value) return;
-                if (Instance._player != null) Destroy(Instance._player);
-                Instance._player = value;
-            }
-        }
+        private Camera _camera;
+        public static Camera Camera => Instance._camera;
 
-        [SerializeField] private EnemySpawnerScript _enemySpawner;
-        public static EnemySpawnerScript EnemySpawner
+        private CinemachineCamera _cineCam;
+        public static CinemachineCamera CineCam => Instance._cineCam;
+
+        private PlayerScript _player;
+        public static PlayerScript Player => Instance._player;
+        public static Action<PlayerScript> OnPlayerRegistered;
+        public static Action OnPlayerUnregistered;
+
+        [SerializeField] private PlayerScript _playerPrefab;
+
+        private bool _playing;
+        public static bool Playing => Instance._playing;
+
+        private bool _paused = true;
+        public static bool Paused => Instance._paused;
+
+        public static void Play()
         {
-            get => Instance._enemySpawner ?? (Instance._enemySpawner = FindAnyObjectByType<EnemySpawnerScript>());
-            set
-            {
-                if (Instance._enemySpawner == value) return;
-                if (Instance._enemySpawner != null) Destroy(Instance._player);
-                Instance._enemySpawner = value;
-            }
+            if (Playing) return;
+
+            Menu.Hide();
+            GameObject.Instantiate(Instance._playerPrefab);
+            Stats.Show();
+
+            Instance._playing = true;
+            Instance._paused = false;
         }
 
-        [SerializeField] private PickupLootTableScript _pickupLT;
-        public static PickupLootTableScript PickupLT =>
-            Instance._pickupLT ?? (Instance._pickupLT = Instance.GetComponent<PickupLootTableScript>());
+        public static void Resume()
+        {
+            if (!Playing) return;
+            if (!Paused) return;
 
-        [SerializeField] private MainMenu _menu;
+            Menu.Hide();
+            Stats.Show();
+
+            Instance._paused = false;
+        }
+
+        public static void Pause()
+        {
+            if (!Playing) return;
+            if (Paused) return;
+
+            Stats.Hide();
+            Menu.Show();
+
+            Instance._paused = true;
+        }
+
+        public static void Stop()
+        {
+            if (!Playing) return;
+
+            Stats.Hide();
+            Menu.Show();
+
+            Instance._playing = false;
+            Instance._paused = true;
+        }
+
+        public static void RegisterPlayer(PlayerScript player)
+        {
+            Instance._player = player;
+            CineCam.Follow = player.transform;
+            OnPlayerRegistered?.Invoke(Player);
+        }
+
+        public static void UnregisterPlayer()
+        {
+            Instance._player = null;
+            GameManager.CineCam.Follow = null;
+            OnPlayerUnregistered?.Invoke();
+        }
+
+        private EnemySpawnerScript _enemySpawner;
+        public static EnemySpawnerScript EnemySpawner => Instance._enemySpawner;
+
+        private PickupLootTableScript _pickupLT;
+        public static PickupLootTableScript PickupLT => Instance._pickupLT;
+
+        private MainMenu _menu;
         public static MainMenu Menu => Instance._menu;
+
+        private StatsScript _stats;
+        public static StatsScript Stats => Instance._stats;
     }
 }

@@ -6,31 +6,30 @@ namespace Menu
 {
     public class MainMenu : MonoBehaviour
     {
-        [SerializeField] private GameObject _player;
-        [SerializeField] private GameObject _hud;
-        [SerializeField] private GameObject _health, _energy, _score;
-        
+        [SerializeField] private CanvasGroup _group;
+
         public void Play()
         {
-            gameObject.SetActive(false);
-            if (GameManager.Player) return;
-            Instantiate(_player);
-            _hud.SetActive(true);
+            if (!GameManager.Playing) GameManager.Play();
+            else GameManager.Resume();
+        }
+
+        public void Restart()
+        {
+            //TODO: Implement Restart
         }
 
         public void Quit() => Application.Quit();
 
-        private void OnEnable()
+        // TODO: Implement anims
+        public void Show()
         {
-            _health.SetActive(false);
-            _energy.SetActive(false);
+            _group.alpha = 1;
         }
 
-        private void OnDisable()
+        public void Hide()
         {
-            _health.SetActive(true);
-            _energy.SetActive(true);
-            _score.SetActive(true);
+            _group.alpha = 0;
         }
     }
 }
