@@ -1,12 +1,40 @@
-/Builds
+# Unity
+/SpaceConqueror/IndexingPerformanceReport
 /SpaceConqueror/Library
-/SpaceConqueror/.idea
 /SpaceConqueror/Logs
 /SpaceConqueror/obj
 /SpaceConqueror/Temp
 /SpaceConqueror/UserSettings
-/SpaceConqueror/Assembly-CSharp.csproj
-/SpaceConqueror/Assembly-CSharp-Editor.csproj
-/SpaceConqueror/SpaceConqueror.sln
-/SpaceConqueror/.vsconfig
+/SpaceConqueror/Assets/_Recovery
+/SpaceConqueror/Assets/Ignore
+/SpaceConqueror/Assets/Ignore.meta
+
+# Baked Maps
+/SpaceConqueror/Assets/Scenes/*/*Scene/*.exr
+/SpaceConqueror/Assets/Scenes/*/*Scene/*.png
+/SpaceConqueror/Assets/Scenes/*/*Scene/*.bytes
+
+# IDE
+/SpaceConqueror/.idea
+/SpaceConqueror/.zed
 /SpaceConqueror/.vs
+/SpaceConqueror/.vscode
+
+# Reaper
+*.reappeaks
+*.rpp-bak
+
+# Builds
+/Builds
+
+# Misc
+*.blend1
+*.tmp
+mono_crash.*
+*.stackdump
+*.log
+!/rub.log
+*.csproj
+*.sln
+*.slnx
+
