@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: BomberDash
   Clip: {fileID: 8300000, guid: d5966aab63276fe58bc79d02e36bd90f, type: 3}
-  Volume: 1
+  MixerGroup: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
+  VolumeRange: {x: 0.9, y: 1}
+  GetVolumeOnPlay: 1
   PitchRange: {x: 1, y: 1}
   GetPitchOnPlay: 0
   Unscaled: 0

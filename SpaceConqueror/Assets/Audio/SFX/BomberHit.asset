@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c264d57fb64f85de2a49e41f0d45da25, type: 3}
   m_Name: BomberHit
   m_EditorClassIdentifier: 
-  Group: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
   Name: BomberHit
   Clip: {fileID: 8300000, guid: 25a08fdd865a4fadfbfaceaa2e3bf7c4, type: 3}
-  Volume: 1
+  MixerGroup: {fileID: 475653390091501720, guid: e56655bdfe04698b8bf2c485ea82e2e2, type: 2}
+  VolumeRange: {x: 0.9, y: 1}
+  GetVolumeOnPlay: 1
   PitchRange: {x: 0.8, y: 1.2}
   GetPitchOnPlay: 1
   Unscaled: 0

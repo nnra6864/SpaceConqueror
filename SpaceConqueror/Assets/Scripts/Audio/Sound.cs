@@ -1,12 +1,15 @@
 using UnityEngine;
 using NnUnityEasings;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "Sound", menuName = "Scriptable Objects/Sound")]
 public class Sound : ScriptableObject
 {
     public string Name;
     public AudioClip Clip;
-    public float Volume = 1;
+    public AudioMixerGroup MixerGroup;
+    public Vector2 VolumeRange = new(1, 1);
+    public bool GetVolumeOnPlay;
     public Vector2 PitchRange = new(1, 1);
     public bool GetPitchOnPlay;
     public bool Unscaled;

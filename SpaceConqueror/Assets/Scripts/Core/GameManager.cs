@@ -11,9 +11,13 @@ namespace Core
 {
     public class GameManager : MonoSingleton<GameManager>
     {
+        [SerializeField] private PlayerScript _playerPrefab;
+        [SerializeField] private Sound[] _sounds;
+
         protected override void Awake()
         {
             base.Awake();
+            AudioManager.Instance.Init(_sounds);
             _camera = Camera.main;
             _cineCam = FindAnyObjectByType<CinemachineCamera>(FindObjectsInactive.Include);
             _enemySpawner = FindAnyObjectByType<EnemySpawnerScript>(FindObjectsInactive.Include);
@@ -44,8 +48,6 @@ namespace Core
         public static PlayerScript Player => Instance._player;
         public static Action<PlayerScript> OnPlayerRegistered;
         public static Action OnPlayerUnregistered;
-
-        [SerializeField] private PlayerScript _playerPrefab;
 
         private bool _playing;
         public static bool Playing => Instance._playing;
@@ -108,7 +110,7 @@ namespace Core
         public static void UnregisterPlayer()
         {
             Instance._player = null;
-            GameManager.CineCam.Follow = null;
+            CineCam.Follow = null;
             OnPlayerUnregistered?.Invoke();
         }
 
