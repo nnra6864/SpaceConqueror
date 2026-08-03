@@ -14,3 +14,6 @@
 [submodule "Modules/UnitySingleton"]
 	path = Modules/UnitySingleton
 	url = ../../nnra6864-mirrors/UnitySingleton
+[submodule "Modules/NuGetForUnity"]
+	path = Modules/NuGetForUnity
+	url = ../../nnra6864-mirrors/NuGetForUnity

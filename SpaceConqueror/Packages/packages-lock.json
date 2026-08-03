@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "file:../../Modules/NuGetForUnity/src/NuGetForUnity/",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.nnra6864.nn-unity-easings": {
       "version": "file:../../Modules/NnUnityEasings",
       "depth": 0,
