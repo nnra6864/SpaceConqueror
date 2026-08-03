@@ -17,3 +17,6 @@
 [submodule "Modules/NuGetForUnity"]
 	path = Modules/NuGetForUnity
 	url = ../../nnra6864-mirrors/NuGetForUnity
+[submodule "Modules/LitMotion"]
+	path = Modules/LitMotion
+	url = ../../nnra6864-mirrors/LitMotion
